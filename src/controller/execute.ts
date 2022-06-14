@@ -2,9 +2,6 @@ import * as XLSX  from 'xlsx';
 
 import * as fs from 'fs';
 import sheetToArray from '../service/sheetToArray';
-import { parse } from 'path';
-import { types } from '@babel/core';
-import { lastDayOfDecade } from 'date-fns';
 
 export default async function execute(dir: string) {
   console.log(dir)
@@ -48,13 +45,19 @@ export default async function execute(dir: string) {
         row[0] = "31/03/2022"
       }
 
-      for (let index = 1; index < meses.length; index++) {
-        if(row[3].indexOf(meses[index]) === 0){
-          row[3] = row[3].replace(meses[index], meses[index - 1])
-            console.log(row[3])
-         }
-      }
 
+      // console.log(row1String,row2String)
+      if (row[0] === '') {
+        console.log(row[3])
+          const dataDeTroca = row[3].split("/")
+          console.log(dataDeTroca)
+          if(dataDeTroca.length === 2) {
+            row[3] = row[3].replace(dataDeTroca[0], meses[1])
+          }
+      }
+      if(row[3].indexOf('02/2022') > 0){
+        row[3] = row[3].replace('02/2022', '01/2022')
+      }
 
 
     })

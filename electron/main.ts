@@ -1,7 +1,7 @@
 import {
   app, BrowserWindow, ipcMain, dialog,
 } from 'electron';
-import execute from '../src/controller/execute';
+import openSheet from '../src/controller/openSheet';
 
 if (require('electron-squirrel-startup')) app.quit();
 
@@ -61,7 +61,7 @@ ipcMain.on('send-openDialog', async (event) => {
     const dir = await dialog.showOpenDialog({
       properties: ['openDirectory', 'multiSelections'],
     });
-    await execute(dir.filePaths[0]);
+    await openSheet(dir.filePaths[0]);
   } catch (error) {
     console.log(`Erro ocorrido: ${error}`);
   }

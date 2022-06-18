@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react';
 
 import { Button } from './components/Button';
-import execute from './execute';
 
 const { ipcRenderer } = window.require('electron');
 

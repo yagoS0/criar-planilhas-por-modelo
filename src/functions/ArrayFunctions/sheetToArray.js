@@ -1,6 +1,5 @@
 import * as XLSX from 'xlsx'
 
-
 export  default async function sheetToArray(sheet){
 
   var range = XLSX.utils.decode_range(sheet['!ref']);

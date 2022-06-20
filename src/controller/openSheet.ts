@@ -18,7 +18,7 @@ export default async function execute(dir: string) {
       return null
     }
 
-      const sheet = await workbook.Sheets[workbook.SheetNames[1]]
+      const sheet =  workbook.Sheets[workbook.SheetNames[1]]
 
       const sheetArray = await sheetToArray(sheet)
 

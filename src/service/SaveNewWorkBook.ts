@@ -1,9 +1,8 @@
 import * as fs from 'fs';
 
+export default async function SaveNewWorkBook(sheetArray: Array<string[]>,month: number){
 
-
-export default async function  SaveNewWorkBook(sheetArray: Array<string[]>,month: number){
-
-  const arrayBuffer =  JSON.stringify(sheetArray)
-  fs.writeFileSync(`${__dirname}/textArray${month}.txt`,arrayBuffer)
+  const arrayBuffer = JSON.stringify(sheetArray)
+  fs.writeFileSync(`${__dirname}/textArray${month += 1}.txt`,arrayBuffer)
+  console.log('saved')
 }

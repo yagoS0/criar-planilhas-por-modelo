@@ -5,24 +5,25 @@ import AlteredDateTexts from '../functions/alteredRows/alteredDateTexts';
 
 
 const AlteredRows = async (sheetArray: Array<string[]>) => {
+  for (let month = 0; month <= 11; month++) {
 
-  for (let month = 0; month = 11; month++) {
-    var dateYear = 2022
+    const fullYear  = new Date()
+    const date = new Date(fullYear.getFullYear(),month,1)
 
-    const date = new Date(dateYear,month,1)
-    console.log(month)
+
     sheetArray.forEach(async (row: Array<string>)=> {
-
-      await AlteredDate(row, date)
 
       await AlteredDateInHeader(row, date)
 
+      await AlteredDate(row, date)
+
+
       await AlteredDateTexts(row,date)
 
-      await SaveNewWorkBook(sheetArray,month)
 
     })
 
+    await SaveNewWorkBook(sheetArray,month)
   }
 
 }

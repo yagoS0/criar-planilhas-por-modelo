@@ -1,8 +1,20 @@
 import * as fs from 'fs';
+import * as XLSX  from 'xlsx';
 
-export default async function SaveNewWorkBook(sheetArray: Array<string[]>,month: number){
+const st = require('sheetjs-style')
 
-  const arrayBuffer = JSON.stringify(sheetArray)
-  fs.writeFileSync(`${__dirname}/textArray${month += 1}.txt`,arrayBuffer)
+export default async function SaveNewWorkBook(sheets: XLSX.WorkSheet[], dir:string,file:string){
+
+  const pathFormated = `${dir}/Novas-Planilhas/${file.toUpperCase()}.xlsx`
+
+  const workBook = await XLSX.utils.book_new()
+
+  sheets.forEach((sheet) => {
+    XLSX.utils.book_append_sheet(workBook, sheet)
+  });
+  
+
+  await XLSX.writeFile(workBook, pathFormated)
+
   console.log('saved')
 }

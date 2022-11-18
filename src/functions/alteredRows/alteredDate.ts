@@ -1,14 +1,22 @@
-import {format} from 'date-fns'
 
 
-export default async function AlteredDate(row: Array<string>, date: Date){
+export default async function AlteredDate
+(row: Array<string>, date: {
+  year:number,
+  dateMonth: number
+  lastDay:number
+}){
 
-  var ultimoDia = format( new Date(date.getFullYear(), date.getMonth() + 1, 0), 'dd/MM/yyyy');
 
-  const row1 = parseInt(row[1])
-  const row2 = parseInt(row[2])
+  const dataDeTroca = row[0].split("/")
+  const searchYear = /(\d{4})/.exec(dataDeTroca[2]);
 
-  if(row1 || row2) {
-    row[0] =  ultimoDia
+  if(searchYear?.index === 0){
+    const dateText =`${date.lastDay}/${date.dateMonth}/${date.year + 1}`
+
+    row[0] = dateText
+    return row
   }
+  // const row1 = parseInt(row[1])
+  // const row2 = parseInt(row[2])
 }

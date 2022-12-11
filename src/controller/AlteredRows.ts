@@ -14,11 +14,11 @@ async function AlteredRows(sheetArray: Array<string[]>, month: number, dir:strin
     sheetArray.forEach(async (row: Array<string>)=> {
       await AlteredDateInHeaderAndText(row)
 
-      await AlteredDate(row, date)
+      // await AlteredDate(row, date)
    
       
     })
-  
+    return sheetArray
     // if(sheetArray.length){
     //   
     // }

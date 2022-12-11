@@ -3,9 +3,9 @@ import * as XLSX  from 'xlsx';
 
 const st = require('sheetjs-style')
 
-export default async function SaveNewWorkBook(sheets: XLSX.WorkSheet[], dir:string,file:string){
+export default async function SaveNewWorkBook(sheets: XLSX.WorkSheet[], dir:string,file:string, namePlan: string){
 
-  const pathFormated = `${dir}/Novas-Planilhas/${file.toUpperCase()}.xlsx`
+  const pathFormated = `${dir}${namePlan}/${file.toUpperCase()}`
 
   const workBook = await XLSX.utils.book_new()
 

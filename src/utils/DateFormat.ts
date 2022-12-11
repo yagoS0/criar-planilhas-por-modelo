@@ -1,4 +1,4 @@
-export default function DateFormat(month: number){
+export default async function DateFormat(month: number){
     const newDate = new Date()
     
     const year = newDate.getFullYear()

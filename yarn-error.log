@@ -1,8 +1,8 @@
 Arguments: 
-  /home/yago/.asdf/installs/nodejs/16.17.0/bin/node /home/yago/.asdf/installs/nodejs/16.17.0/bin/yarn add sheet-style
+  /home/yago/.asdf/installs/nodejs/16.17.0/bin/node /home/yago/.asdf/installs/nodejs/16.17.0/bin/yarn
 
 PATH: 
-  /home/yago/.asdf/plugins/nodejs/shims:/home/yago/.asdf/installs/nodejs/16.17.0/bin:/home/yago/.cargo/bin:/home/yago/.local/bin:/home/yago/.asdf/shims:/home/yago/.asdf/bin:/home/yago/.vscode-server/bin/6261075646f055b99068d3688932416f2346dd3b/bin/remote-cli:/home/yago/.cargo/bin:/home/yago/.local/bin:/home/yago/.local/share/zinit/polaris/bin:/home/yago/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Users/yago/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/yago/AppData/Local/Programs/Microsoft VS Code/bin
+  /home/yago/.asdf/plugins/nodejs/shims:/home/yago/.asdf/installs/nodejs/16.17.0/bin:/home/yago/.cargo/bin:/home/yago/.local/bin:/home/yago/.asdf/shims:/home/yago/.asdf/bin:/home/yago/.vscode-server/bin/5235c6bb189b60b01b1f49062f4ffa42384f8c91/bin/remote-cli:/home/yago/.cargo/bin:/home/yago/.local/bin:/home/yago/.local/share/zinit/polaris/bin:/home/yago/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Users/yago/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/yago/AppData/Local/Programs/Microsoft VS Code/bin
 
 Yarn version: 
   1.22.19
@@ -14,17 +14,12 @@ Platform:
   linux x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/sheet-style: Not found
-      at Request.params.callback [as _callback] (/home/yago/.asdf/installs/nodejs/16.17.0/lib/node_modules/yarn/lib/cli.js:66145:18)
-      at Request.self.callback (/home/yago/.asdf/installs/nodejs/16.17.0/lib/node_modules/yarn/lib/cli.js:140890:22)
-      at Request.emit (node:events:513:28)
-      at Request.<anonymous> (/home/yago/.asdf/installs/nodejs/16.17.0/lib/node_modules/yarn/lib/cli.js:141862:10)
-      at Request.emit (node:events:513:28)
-      at IncomingMessage.<anonymous> (/home/yago/.asdf/installs/nodejs/16.17.0/lib/node_modules/yarn/lib/cli.js:141784:12)
-      at Object.onceWrapper (node:events:627:28)
-      at IncomingMessage.emit (node:events:525:35)
-      at endReadableNT (node:internal/streams/readable:1358:12)
-      at processTicksAndRejections (node:internal/process/task_queues:83:21)
+  SyntaxError: /home/yago/developer/criar-planilhas-por-modelo/package.json: Unexpected token } in JSON at position 1094
+      at JSON.parse (<anonymous>)
+      at /home/yago/.asdf/installs/nodejs/16.17.0/lib/node_modules/yarn/lib/cli.js:1629:59
+      at Generator.next (<anonymous>)
+      at step (/home/yago/.asdf/installs/nodejs/16.17.0/lib/node_modules/yarn/lib/cli.js:310:30)
+      at /home/yago/.asdf/installs/nodejs/16.17.0/lib/node_modules/yarn/lib/cli.js:321:13
 
 npm manifest: 
   {
@@ -66,10 +61,7 @@ npm manifest:
       "react-hot-loader": "4.13.0",
       "react-router-dom": "6",
       "react-select": "^5.2.2",
-      "sheetjs-style": "^0.15.8",
       "styled-components": "5.3.0",
-      "xlsx": "^0.17.5",
-      "xlsx-formulas": "^1.0.0"
     },
     "devDependencies": {
       "@babel/core": "7.14.6",
@@ -5422,6 +5414,11 @@ Lockfile:
     integrity sha1-JcfInLH5B3+IkbvmHY85Dq4lbx4=
     dependencies:
       pend "~1.2.0"
+  
+  fflate@^0.3.8:
+    version "0.3.11"
+    resolved "https://registry.yarnpkg.com/fflate/-/fflate-0.3.11.tgz#2c440d7180fdeb819e64898d8858af327b042a5d"
+    integrity sha512-Rr5QlUeGN1mbOHlaqcSYMKVpPbgLy0AWT/W0EHxA6NGI12yO1jpoui2zBBvU2G824ltM6Ut8BFgfHSBGfkmS0A==
   
   figures@^3.0.0:
     version "3.2.0"
@@ -11077,6 +11074,22 @@ Lockfile:
     integrity sha1-IntrDeoId/pm8HCpvbZOOzgKKhI=
     dependencies:
       exceljs "^0.2.8"
+  
+  xlsx-js-style@^1.2.0:
+    version "1.2.0"
+    resolved "https://registry.yarnpkg.com/xlsx-js-style/-/xlsx-js-style-1.2.0.tgz#58455f2fd3c5e22807c2841f5b0631a07098b719"
+    integrity sha512-DDT4FXFSWfT4DXMSok/m3TvmP1gvO3dn0Eu/c+eXHW5Kzmp7IczNkxg/iEPnImbG9X0Vb8QhROda5eatSR/97Q==
+    dependencies:
+      adler-32 "~1.2.0"
+      cfb "^1.1.4"
+      codepage "~1.14.0"
+      commander "~2.17.1"
+      crc-32 "~1.2.0"
+      exit-on-epipe "~1.0.1"
+      fflate "^0.3.8"
+      ssf "~0.11.2"
+      wmf "~1.0.1"
+      word "~0.3.0"
   
   xlsx@^0.17.5:
     version "0.17.5"

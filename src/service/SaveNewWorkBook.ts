@@ -1,7 +1,4 @@
-import * as fs from 'fs';
-import * as XLSX  from 'xlsx';
-
-const st = require('sheetjs-style')
+import * as XLSX  from 'xlsx-js-style';
 
 export default async function SaveNewWorkBook(sheets: XLSX.WorkSheet[], dir:string,file:string, namePlan: string){
 

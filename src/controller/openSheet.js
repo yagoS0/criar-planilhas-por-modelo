@@ -1,13 +1,12 @@
-import * as XLSX  from 'sheetjs-style';
+import * as XLSX  from 'xlsx-js-style';
 import * as fs from 'fs';
 import SaveNewWorkBook from '../service/SaveNewWorkBook';
-import DateFormat from '../utils/DateFormat';
-
-import AlteredRows from './AlteredRows'
-import sheetToArray from '../functions/ArrayFunctions/sheetToArray';
-import StyleSheets from '../functions/StyleSheets';
+import SpaceStyle from '../functions/SpaceStyle';
+import AtualizaPlanilha from '../functions/AtualizaPlanilha'
+import StyleSheet from '../functions/StyleSheet'
 
 export default async function execute(dir) {
+
   console.log(dir)
   const files = fs.readdirSync(dir);
 
@@ -23,99 +22,37 @@ export default async function execute(dir) {
     const sheet_range = workbook.SheetNames.length - 3
     
     const sheets = []
-
-    
        
-    for(let i = 0; i <= 11; i++ ){
-      if (workbook.Sheets[workbook.SheetNames[i]] === undefined) {
+    for(let sheetNumber = 0; sheetNumber <= 11; sheetNumber++ ){
+      if (workbook.Sheets[workbook.SheetNames[sheetNumber]] === undefined) {
         console.log(`Nao existe nada aqui - ${dir}/${file}`)
         return null
       }
-      const bookSheets =  workbook.Sheets[workbook.SheetNames[i]]
+      const bookSheets =  workbook.Sheets[workbook.SheetNames[sheetNumber]]
+
         for (let r = 0; r <= 100; r ++) {
+
+          await AtualizaPlanilha(bookSheets, r, sheetNumber)
           
           // Debitos e Creditos
           const rowDebito = XLSX.utils.encode_cell({c: 1, r: r})
           const rowCredito = XLSX.utils.encode_cell({c: 2, r: r})
 
           const debitoValue = parseInt(bookSheets[rowDebito]?.v)
-          const creditoValue = parseInt(bookSheets[rowCredito]?.v)
-         
-
-          // Altera a data
-            const date = await DateFormat(i)
-
-            const rowDate = XLSX.utils.encode_cell({c: 0, r: r})
-
-            const debitoString = JSON.stringify(debitoValue)
-            const creditoString = JSON.stringify(creditoValue)
-
-            console.log(debitoString, creditoString)
-
-            if(debitoString !== 'null'|| creditoString !== 'null'){
-
-              bookSheets[rowDate] = {
-                v: `${date.lastDay}/${date.dateMonth}/${date.year + 1}`
-              } 
-
-              if(debitoValue === 232 & creditoValue === 5){
-              
-                bookSheets[rowDate] = {
-                  v: `05/${date.dateMonth + 1}/${date.year + 1}`
-                } 
-              } 
-            }
-
-           
-
-            ///////////////////////////////////////////////////////
-
-            // Troca data do texto
-            const rowTexto = XLSX.utils.encode_cell({c: 3, r: r})
-
-            const cellText = bookSheets[rowTexto]?.v
-
-            const splitBarra = cellText?.split('/')
-
-            if(splitBarra?.length === 2){
-              const splitSpace = splitBarra[1]?.split(" ")
-              const yearInt = parseInt(splitSpace[0])
-
-              if (yearInt !== NaN) {
-                bookSheets[rowTexto] = {
-                  v: cellText?.replace(yearInt, '2023') 
-                } 
-              }
-            }
-            ////////////////////////////////////////////////
-      
-            // Apagando valores das celulas
-            const rowValue = XLSX.utils.encode_cell({c: 4, r: r})
-            const cellValue = bookSheets[rowValue]?.v
-           
-
-            if (cellValue !==  'VALOR') {
-              bookSheets[rowValue] = {
-                v: ' '
-              } 
-            }
-            ///////////////////////////////////////////////////////
+          const creditoValue = parseInt(bookSheets[rowCredito]?.v)   
+        
         }
-    
-   
 
-      ////// ESSE CODIGO A BAIXO FUNCIONA////////////////////
-      // const address = XLSX.utils.encode_cell({c: 3, r: 1});
-      // const cell = bookSheets['D2'];
-      // const value = XLSX.utils.format_cell(cell);
-      // console.log(value)
-      // cell?.v = 'Essa passou'
-      ////////////////////////////////////////////////////////////
+        await SpaceStyle(bookSheets)
 
-      // await StyleSheets(sheet)
-      
-      sheets.push(bookSheets)
+        console.log(bookSheets["A1"].s)
 
+        const SheetStyled = await StyleSheet(bookSheets)
+
+        console.log(bookSheets["A1"].s)
+
+        sheets.push(SheetStyled)
+        
       if (sheet_range === 11) {
         await SaveNewWorkBook(sheets,dir,file, dirNovasPlanilhas)
       }
@@ -125,3 +62,9 @@ export default async function execute(dir) {
      
   })
 }
+
+
+// bookSheets["A1"].s = {
+//   font: { sz: 50, color: { rgb: '00f' } },
+//   border: { top: { style: 'bold' }, bottom: { style: 'bold' } }
+// }

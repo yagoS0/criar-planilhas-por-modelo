@@ -1,9 +1,10 @@
 import * as XLSX  from 'xlsx-js-style';
 import * as fs from 'fs';
+
 import SaveNewWorkBook from '../service/SaveNewWorkBook';
 import SpaceStyle from '../functions/SpaceStyle';
-import AtualizaPlanilha from '../functions/AtualizaPlanilha'
-import StyleSheet from '../functions/StyleSheet'
+import styleSheet from '../functions/styleSheet'
+import MapRows from '../functions/MapRows'
 
 export default async function execute(dir) {
 
@@ -30,36 +31,20 @@ export default async function execute(dir) {
       }
       const bookSheets =  workbook.Sheets[workbook.SheetNames[sheetNumber]]
 
-        for (let r = 0; r <= 100; r ++) {
+      const rowObject = await MapRows(sheetNumber,bookSheets)
 
-          await AtualizaPlanilha(bookSheets, r, sheetNumber)
-          
-          // Debitos e Creditos
-          const rowDebito = XLSX.utils.encode_cell({c: 1, r: r})
-          const rowCredito = XLSX.utils.encode_cell({c: 2, r: r})
+      
+      await styleSheet(bookSheets, rowObject)
+      
+      await SpaceStyle(bookSheets)
 
-          const debitoValue = parseInt(bookSheets[rowDebito]?.v)
-          const creditoValue = parseInt(bookSheets[rowCredito]?.v)   
         
-        }
-
-        await SpaceStyle(bookSheets)
-
-        console.log(bookSheets["A1"].s)
-
-        const SheetStyled = await StyleSheet(bookSheets)
-
-        console.log(bookSheets["A1"].s)
-
-        sheets.push(SheetStyled)
+      sheets.push(bookSheets)
         
       if (sheet_range === 11) {
         await SaveNewWorkBook(sheets,dir,file, dirNovasPlanilhas)
       }
-    }   
-   
-    
-     
+    }    
   })
 }
 

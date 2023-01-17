@@ -1,17 +1,44 @@
 import XLSX from 'xlsx-js-style'
 
 
-export default async function StyleReceitaServico(
-  sheet:XLSX.WorkSheet,celulas:string[][],indiceReceitaServiço: number[]){
+export default async function StyleReceitaPresumido(
+  sheet:XLSX.WorkSheet,celulas:string[][],indiceReceitaPresumido: number[]){
 
   const letras: number[] = [0,1,2,3,4]
 
   // Cabeçalhos   
-  for (let row = indiceReceitaServiço[0]-2; row <= indiceReceitaServiço[1]; row++) {
+  for (let row = indiceReceitaPresumido[0]-2; row <= indiceReceitaPresumido[1]; row++) {
   
     letras.map(async (colun)=>{
-
-    if(row === indiceReceitaServiço[0]-2){
+      if(row === indiceReceitaPresumido[0]-2){
+        sheet[celulas[row][colun]].s = {
+          font: {
+            sz: 12,
+            bold: true,
+            color: {
+              rgb: '000',
+            },
+          },
+          alignment: {
+            horizontal: 'center',
+          },
+          border: {
+            top: {
+              style: 'thick',
+            },
+            bottom: {
+              style: 'thick',
+            },
+            right: {
+              style: 'thick',
+            },
+            left: {
+              style: 'thick',
+            },
+          },
+        }
+      }
+    if(row === indiceReceitaPresumido[0]-2){
       sheet[celulas[row][colun]].s = {
         font: {
           sz: 12,
@@ -39,7 +66,7 @@ export default async function StyleReceitaServico(
         },
       }
     }
-    if(row === indiceReceitaServiço[0]-1){
+    if(row === indiceReceitaPresumido[0]-1){
       sheet[celulas[row][colun]].s = {
         font: {
           sz: 12,
@@ -83,16 +110,16 @@ export default async function StyleReceitaServico(
         },
         border: {
           top: {
-            style: 'thick',
+            style: 'medium',
           },
           bottom: {
-            style: 'thick',
+            style: 'medium',
           },
           right: {
             style: 'thick',
           },
           left: {
-            style: 'thick',
+            style: 'medium',
           },
         },
       }
@@ -100,7 +127,7 @@ export default async function StyleReceitaServico(
   }
 )}
 
-  for (let row = indiceReceitaServiço[0]; row <= indiceReceitaServiço[1]; row++) {
+  for (let row = indiceReceitaPresumido[0]; row <= indiceReceitaPresumido[1]; row++) {
 
     letras.map(async (colun)=>{
 
@@ -131,8 +158,8 @@ export default async function StyleReceitaServico(
             },
           },
         }
-        // Ultima linha da tabela
-        if(row === indiceReceitaServiço[1]){
+        // penultima linha linha da tabela
+        if(row === indiceReceitaPresumido[1]){
           sheet[celulas[row][colun]].s = {
             font: {
               sz: 12,
@@ -161,8 +188,38 @@ export default async function StyleReceitaServico(
             },
           }
         }
-        // Penultima linha da tabela
-        if(row === indiceReceitaServiço[1]-1){
+        // Ultima linha
+        if(row === indiceReceitaPresumido[1]){
+          sheet[celulas[row+1][colun]].s = {
+            font: {
+              sz: 12,
+              bold: true,
+              color: {
+                rgb: '000',
+              },
+            },
+            alignment: {
+              horizontal: 'right',
+            },
+            border: {
+            
+              top: {
+                style: 'thick',
+              },
+              bottom: {
+                style: 'thick',
+              },
+              right: {
+                style: 'medium',
+              },
+              left: {
+                style: 'medium',
+              },
+            },
+          }
+        }
+        // pis a pagar
+        if(row === indiceReceitaPresumido[1]-2){
           sheet[celulas[row][colun]].s = {
             font: {
               sz: 12,
@@ -177,7 +234,67 @@ export default async function StyleReceitaServico(
             border: {
             
               top: {
+                style: 'thick',
+              },
+              bottom: {
+                style: 'thick',
+              },
+              right: {
                 style: 'medium',
+              },
+              left: {
+                style: 'medium',
+              },
+            },
+          }
+        }
+          // iss a pagar
+          if(row === indiceReceitaPresumido[1]-5){
+            sheet[celulas[row][colun]].s = {
+              font: {
+                sz: 12,
+                bold: true,
+                color: {
+                  rgb: '000',
+                },
+              },
+              alignment: {
+                horizontal: 'right',
+              },
+              border: {
+              
+                top: {
+                  style: 'thick',
+                },
+                bottom: {
+                  style: 'thick',
+                },
+                right: {
+                  style: 'medium',
+                },
+                left: {
+                  style: 'medium',
+                },
+              },
+            }
+          }
+            // Receita n/mes
+        if(row === indiceReceitaPresumido[1]-8){
+          sheet[celulas[row][colun]].s = {
+            font: {
+              sz: 12,
+              bold: true,
+              color: {
+                rgb: '000',
+              },
+            },
+            alignment: {
+              horizontal: 'right',
+            },
+            border: {
+            
+              top: {
+                style: 'thick',
               },
               bottom: {
                 style: 'thick',
@@ -195,7 +312,7 @@ export default async function StyleReceitaServico(
           sheet[celulas[row][colun]].s = {
             font: {
               sz: 12,
-              bold: false,
+              bold: true,
               color: {
                 rgb: '000',
               },
@@ -205,16 +322,16 @@ export default async function StyleReceitaServico(
             },
             border: {
               top: {
-                style: 'thick',
+                style: 'medium',
               },
               bottom: {
-                style: 'thick',
+                style: 'medium',
               },
               right: {
                 style: 'thick',
               },
               left: {
-                style: 'thick',
+                style: 'medium',
               },
             },
           }

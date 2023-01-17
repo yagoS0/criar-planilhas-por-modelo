@@ -1,6 +1,8 @@
 import XLSX from 'xlsx-js-style'
+import StyleReceitaPresumido from './StyleFunctions/StyleReceitaPresumido';
 
 import StyleReceitaServico from './StyleFunctions/StyleReceitaServico';
+import StyleReceitaVenda from './StyleFunctions/StyleReceitaVenda';
 
 export default async function styleSheet(sheet:XLSX.WorkSheet, 
   coluns: {
@@ -118,18 +120,80 @@ export default async function styleSheet(sheet:XLSX.WorkSheet,
     ]
 
     var indiceReceitaServiço: number[] = []
+    var indiceReceitaVenda: number[] = []
+    var indiceReceitaPresumido: number[] = []
+  
+    // cabeçalho
+    const letras: number[] = [0,1,2,3,4]
+    letras.map((colun)=>{
+      sheet[celulas[0][colun]].s = {
+        font: {
+          sz: 18,
+          bold: true,
+          color: {
+            rgb: '000',
+          },
+        },
+        alignment: {
+          horizontal: 'center',
+        },
+        border: {
+          top: {
+            style: 'thick',
+          },
+          bottom: {
+            style: 'thick',
+          },
+          right: {
+            style: 'thick',
+          },
+          left: {
+            style: 'thick',
+          },
+        },
+      }
+    })
+      
 
     coluns.map(async (colun, index) => {
+      // Receita Serviço
       if(colun.creditoValue === 372) {
         indiceReceitaServiço.push(index)
       }
       if(colun.creditoValue === 265) {
         indiceReceitaServiço.push(index)
       }
+      // Receita Venda
+      if(colun.creditoValue === 362) {
+        indiceReceitaVenda.push(index)
+      }
+      if(colun.creditoValue === 265) {
+        indiceReceitaVenda.push(index)
+      }
+      // Receita Presumido
+      if(colun.creditoValue === 372) {
+        indiceReceitaPresumido.push(index)
+      }
+      if(colun.creditoValue === 75) {
+        indiceReceitaPresumido.push(index)
+      }
 
     })
 
-    await StyleReceitaServico(sheet,celulas,indiceReceitaServiço)
+    // Receita Serviço
+    if(indiceReceitaServiço.length === 2){
+      await StyleReceitaServico(sheet,celulas,indiceReceitaServiço)
+    }
+
+    // Receita Venda
+    if(indiceReceitaVenda.length === 2){
+      await StyleReceitaVenda(sheet,celulas,indiceReceitaVenda)
+    }
+    //Receita Presumido
+    if(indiceReceitaPresumido.length === 2){
+      await StyleReceitaPresumido(sheet,celulas,indiceReceitaPresumido)
+    }
+
     
     return sheet
 }

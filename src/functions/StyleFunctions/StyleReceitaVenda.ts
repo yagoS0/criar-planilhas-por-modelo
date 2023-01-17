@@ -1,17 +1,17 @@
 import XLSX from 'xlsx-js-style'
 
 
-export default async function StyleReceitaServico(
-  sheet:XLSX.WorkSheet,celulas:string[][],indiceReceitaServiço: number[]){
+export default async function StyleReceitaVenda(
+  sheet:XLSX.WorkSheet,celulas:string[][],indiceReceitaVenda: number[]){
 
   const letras: number[] = [0,1,2,3,4]
 
   // Cabeçalhos   
-  for (let row = indiceReceitaServiço[0]-2; row <= indiceReceitaServiço[1]; row++) {
+  for (let row = indiceReceitaVenda[0]-2; row <= indiceReceitaVenda[1]; row++) {
   
     letras.map(async (colun)=>{
 
-    if(row === indiceReceitaServiço[0]-2){
+    if(row === indiceReceitaVenda[0]-2){
       sheet[celulas[row][colun]].s = {
         font: {
           sz: 12,
@@ -39,7 +39,7 @@ export default async function StyleReceitaServico(
         },
       }
     }
-    if(row === indiceReceitaServiço[0]-1){
+    if(row === indiceReceitaVenda[0]-1){
       sheet[celulas[row][colun]].s = {
         font: {
           sz: 12,
@@ -100,7 +100,7 @@ export default async function StyleReceitaServico(
   }
 )}
 
-  for (let row = indiceReceitaServiço[0]; row <= indiceReceitaServiço[1]; row++) {
+  for (let row = indiceReceitaVenda[0]; row <= indiceReceitaVenda[1]; row++) {
 
     letras.map(async (colun)=>{
 
@@ -132,7 +132,7 @@ export default async function StyleReceitaServico(
           },
         }
         // Ultima linha da tabela
-        if(row === indiceReceitaServiço[1]){
+        if(row === indiceReceitaVenda[1]){
           sheet[celulas[row][colun]].s = {
             font: {
               sz: 12,
@@ -162,7 +162,7 @@ export default async function StyleReceitaServico(
           }
         }
         // Penultima linha da tabela
-        if(row === indiceReceitaServiço[1]-1){
+        if(row === indiceReceitaVenda[1]-1){
           sheet[celulas[row][colun]].s = {
             font: {
               sz: 12,
@@ -195,7 +195,7 @@ export default async function StyleReceitaServico(
           sheet[celulas[row][colun]].s = {
             font: {
               sz: 12,
-              bold: false,
+              bold: true,
               color: {
                 rgb: '000',
               },

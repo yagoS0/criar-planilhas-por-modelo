@@ -23,7 +23,7 @@ async function AtualizaPlanilha(bookSheets, r,sheetNumber){
     if(debitoString !== 'null'|| creditoString !== 'null'){
 
       bookSheets[rowDate] = {
-        v: `${date.lastDay}/${date.dateMonth}/${date.year + 1}`
+        v: `${date.lastDay}/${date.dateMonth}/${date.year}`
       } 
 
       if(debitoValue === 232 & creditoValue === 5){

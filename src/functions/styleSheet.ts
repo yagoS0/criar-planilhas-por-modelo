@@ -1,4 +1,5 @@
 import XLSX from 'xlsx-js-style'
+import StyleCompras from './StyleFunctions/StyleCompras';
 import StyleReceitaPresumido from './StyleFunctions/StyleReceitaPresumido';
 
 import StyleReceitaServico from './StyleFunctions/StyleReceitaServico';
@@ -119,10 +120,6 @@ export default async function styleSheet(sheet:XLSX.WorkSheet,
 
     ]
 
-    var indiceReceitaServiço: number[] = []
-    var indiceReceitaVenda: number[] = []
-    var indiceReceitaPresumido: number[] = []
-  
     // cabeçalho
     const letras: number[] = [0,1,2,3,4]
     letras.map((colun)=>{
@@ -155,6 +152,22 @@ export default async function styleSheet(sheet:XLSX.WorkSheet,
     })
       
 
+    var indiceReceitaServiço: number[] = []
+    var indiceReceitaVenda: number[] = []
+    var indiceReceitaPresumido: number[] = []
+    var indiceCompra: number[] = []
+ // Compras
+ 
+    coluns.map(async (colun, index) => {
+      if(colun.debitoValue === 524) {
+        indiceCompra.push(index)
+      }
+      if(colun.debitoValue === 526) {
+        indiceCompra.push(index)
+      }
+
+    })
+  
     coluns.map(async (colun, index) => {
       // Receita Serviço
       if(colun.creditoValue === 372) {
@@ -192,6 +205,10 @@ export default async function styleSheet(sheet:XLSX.WorkSheet,
     //Receita Presumido
     if(indiceReceitaPresumido.length === 2){
       await StyleReceitaPresumido(sheet,celulas,indiceReceitaPresumido)
+    }
+    //Compras
+    if(indiceCompra.length > 0){
+      await StyleCompras(sheet,celulas,indiceCompra)
     }
 
     

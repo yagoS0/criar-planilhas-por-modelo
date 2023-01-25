@@ -1,70 +1,19 @@
 import XLSX from 'xlsx-js-style'
 
 
-export default async function StyleReceitaServico(
-  sheet:XLSX.WorkSheet,celulas:string[][],indiceReceitaServiço: number[]){
+export default async function StyleCompras(
+  sheet:XLSX.WorkSheet,celulas:string[][],indiceCompra: number[]){
 
   const letras: number[] = [0,1,2,3,4]
 
-  const rowInicio = indiceReceitaServiço[0]
-  const rowFinal = indiceReceitaServiço[1]
+  
+  const rowInicio = indiceCompra[0]
+  letras.map(colun => {
 
-  // Cabeçalhos   
-  letras.map(async (colun)=>{
-    if(rowInicio === indiceReceitaServiço[0]){
+    if(rowInicio === indiceCompra[0]){
 
-      // Rows do meio 
-      for (let index = 0; index <= rowFinal; index++) {
-        
-        sheet[celulas[index][colun]].s = {
-          font: {
-            sz: 12,
-            bold: false,
-            color: {
-              rgb: '000',
-            },
-          },
-          alignment: {
-            horizontal: 'left',
-          },
-          border: {
-            top: {
-              style: 'medium',
-            },
-            bottom: {
-              style: 'medium',
-            },
-            right: {
-              style: 'thick',
-            },
-            left: {
-              style: 'medium',
-            },
-          },
-        }
-      }
-      sheet[celulas[rowFinal-1][colun]].s = {
-        font: {
-          sz: 12,
-          bold: false,
-          color: {
-            rgb: '000',
-          },
-        },
-        alignment: {
-          horizontal: 'right',
-        },
-        border: {
-          top: {
-            style: 'thick',
-          },
-          bottom: {
-            style: 'thick',
-          },
-        
-        },
-      }
-      sheet[celulas[rowFinal][colun]].s = {
+      // Primeira row
+      sheet[celulas[rowInicio][colun]].s = {
         font: {
           sz: 12,
           bold: false,
@@ -77,41 +26,21 @@ export default async function StyleReceitaServico(
         },
         border: {
           top: {
-            style: 'thick',
+            style: 'medium',
           },
           bottom: {
             style: 'thick',
           },
-          rigth: {
+          right: {
             style: 'thick',
           },
           left: {
-            style: 'thick',
+            style: 'medium',
           },
         },
       }
         
       //Cabeçalhos
-      sheet[celulas[rowInicio-3][colun]].s = {
-        font: {
-          sz: 16,
-          bold: true,
-          color: {
-            rgb: '000',
-          },
-        },
-        alignment: {
-          horizontal: 'center',
-        },
-        border: {
-          top: {
-            style: 'thick',
-          },
-          bottom: {
-            style: 'thick',
-          },
-        },
-      }
       sheet[celulas[rowInicio-2][colun]].s = {
         font: {
           sz: 12,
@@ -159,53 +88,11 @@ export default async function StyleReceitaServico(
         },
       }
 
-      if(colun === 4){
-        sheet[celulas[rowInicio-3][colun]].s = {
-          font: {
-            sz: 16,
-            bold: true,
-            color: {
-              rgb: '000',
-            },
-          },
-          alignment: {
-            horizontal: 'center',
-          },
-          border: {
-            right: {
-              style: 'thick',
-            },
-         
-          },
-        }
+      
+    }
 
-        sheet[celulas[rowFinal-1][colun]].s = {
-          font: {
-            sz: 12,
-            bold: false,
-            color: {
-              rgb: '000',
-            },
-          },
-          alignment: {
-            horizontal: 'right',
-          },
-          border: {
-            top: {
-              style: 'thick',
-            },
-            bottom: {
-              style: 'thick',
-            },
-            right: {
-              style: 'thick',
-            },
-            left: {
-              style: 'thick',
-            },
-          
-          },
-        }
+    // Borda direita das celulas
+    if(colun === 4){
 
         sheet[celulas[rowInicio-2][colun]].s = {
         font: {
@@ -276,6 +163,15 @@ export default async function StyleReceitaServico(
           },
         },
       }
+    }
+  })
+  
+
+
+  if(indiceCompra[1]){
+    const rowFinal = indiceCompra[1]
+    letras.map(colun => {
+      // Ultima row
       sheet[celulas[rowFinal][colun]].s = {
         font: {
           sz: 12,
@@ -294,19 +190,92 @@ export default async function StyleReceitaServico(
           bottom: {
             style: 'thick',
           },
-          rigth: {
-            style: 'thick',
+          right: {
+            style: 'medium',
           },
           left: {
+            style: 'medium',
+          },
+        },
+      }
+      sheet[celulas[rowFinal+1][colun]].s = {
+        font: {
+          sz: 12,
+          bold: false,
+          color: {
+            rgb: '000',
+          },
+        },
+        alignment: {
+          horizontal: 'right',
+        },
+        border: {
+          top: {
+            style: 'thick',
+          },
+          bottom: {
             style: 'thick',
           },
         },
       }
-    }
       
-    }
 
-  })
+      if(colun === 4){
+        sheet[celulas[rowFinal+1][colun]].s = {
+          font: {
+            sz: 12,
+            bold: false,
+            color: {
+              rgb: '000',
+            },
+          },
+          alignment: {
+            horizontal: 'right',
+          },
+          border: {
+            top: {
+              style: 'thick',
+            },
+            bottom: {
+              style: 'thick',
+            },
+            right: {
+              style: 'thick',
+            },
+            left: {
+              style: 'thick',
+            },
+          },
+        }
+        sheet[celulas[rowFinal][colun]].s = {
+          font: {
+            sz: 12,
+            bold: false,
+            color: {
+              rgb: '000',
+            },
+          },
+          alignment: {
+            horizontal: 'right',
+          },
+          border: {
+            top: {
+              style: 'thick',
+            },
+            bottom: {
+              style: 'thick',
+            },
+            right: {
+              style: 'thick',
+            },
+            left: {
+              style: 'thick',
+            },
+          },
+        }
+      }
+    })
+  }
 
   return sheet
 } 

@@ -7,12 +7,9 @@ export default async function StyleReceitaVenda(
   const letras: number[] = [0,1,2,3,4]
 
   // Cabeçalhos   
-  for (let row = indiceReceitaVenda[0]-2; row <= indiceReceitaVenda[1]; row++) {
   
     letras.map(async (colun)=>{
-
-    if(row === indiceReceitaVenda[0]-2){
-      sheet[celulas[row][colun]].s = {
+      sheet[celulas[indiceReceitaVenda[0]-2][colun]].s = {
         font: {
           sz: 12,
           bold: true,
@@ -30,17 +27,10 @@ export default async function StyleReceitaVenda(
           bottom: {
             style: 'thick',
           },
-          right: {
-            style: 'thick',
-          },
-          left: {
-            style: 'thick',
-          },
+         
         },
       }
-    }
-    if(row === indiceReceitaVenda[0]-1){
-      sheet[celulas[row][colun]].s = {
+      sheet[celulas[indiceReceitaVenda[0]-1][colun]].s = {
         font: {
           sz: 12,
           bold: true,
@@ -58,54 +48,39 @@ export default async function StyleReceitaVenda(
           bottom: {
             style: 'thick',
           },
-          right: {
-            style: 'thick',
-          },
-          left: {
-            style: 'thick',
-          },
+         
         },
       }
-    }
-    ////
-    // Bold Canto direito
-    if(colun === 4){
-      sheet[celulas[row][colun]].s = {
+        
+      // Meio da tabela
+      sheet[celulas[indiceReceitaVenda[0]][colun]].s = {
         font: {
           sz: 12,
-          bold: true,
+          bold: false,
           color: {
             rgb: '000',
           },
         },
         alignment: {
-          horizontal: 'center',
+          horizontal: 'left',
         },
         border: {
           top: {
-            style: 'thick',
+            style: 'medium',
           },
           bottom: {
-            style: 'thick',
+            style: 'medium',
           },
           right: {
-            style: 'thick',
+            style: 'medium',
           },
           left: {
-            style: 'thick',
+            style: 'medium',
           },
         },
       }
-    }
-  }
-)}
-
-  for (let row = indiceReceitaVenda[0]; row <= indiceReceitaVenda[1]; row++) {
-
-    letras.map(async (colun)=>{
-
-    // Meio da tabela
-        sheet[celulas[row][colun]].s = {
+      // Ultima linha da tabela
+        sheet[celulas[indiceReceitaVenda[1]][colun]].s = {
           font: {
             sz: 12,
             bold: false,
@@ -117,11 +92,41 @@ export default async function StyleReceitaVenda(
             horizontal: 'left',
           },
           border: {
+          
             top: {
               style: 'medium',
             },
             bottom: {
+              style: 'thick',
+            },
+            right: {
+              style: 'thick',
+            },
+            left: {
               style: 'medium',
+            },
+          },
+        }
+
+      // Penultima linha da tabela
+        sheet[celulas[indiceReceitaVenda[1]-1][colun]].s = {
+          font: {
+            sz: 12,
+            bold: true,
+            color: {
+              rgb: '000',
+            },
+          },
+          alignment: {
+            horizontal: 'right',
+          },
+          border: {
+          
+            top: {
+              style: 'medium',
+            },
+            bottom: {
+              style: 'thick',
             },
             right: {
               style: 'medium',
@@ -131,96 +136,68 @@ export default async function StyleReceitaVenda(
             },
           },
         }
-        // Ultima linha da tabela
-        if(row === indiceReceitaVenda[1]){
-          sheet[celulas[row][colun]].s = {
-            font: {
-              sz: 12,
-              bold: false,
-              color: {
-                rgb: '000',
-              },
+     
+
+      ////
+      // Bold Canto direito
+      if(colun === 4){
+        sheet[celulas[indiceReceitaVenda[0]][colun]].s = {
+          font: {
+            sz: 12,
+            bold: true,
+            color: {
+              rgb: '000',
             },
-            alignment: {
-              horizontal: 'left',
+          },
+          alignment: {
+            horizontal: 'center',
+          },
+          border: {
+            top: {
+              style: 'thick',
             },
-            border: {
-            
-              top: {
-                style: 'medium',
-              },
-              bottom: {
-                style: 'thick',
-              },
-              right: {
-                style: 'thick',
-              },
-              left: {
-                style: 'medium',
-              },
+            bottom: {
+              style: 'thick',
             },
-          }
+            right: {
+              style: 'thick',
+            },
+            left: {
+              style: 'thick',
+            },
+          },
         }
-        // Penultima linha da tabela
-        if(row === indiceReceitaVenda[1]-1){
-          sheet[celulas[row][colun]].s = {
-            font: {
-              sz: 12,
-              bold: true,
-              color: {
-                rgb: '000',
-              },
+
+        sheet[celulas[indiceReceitaVenda[0]-2][colun]].s = {
+          font: {
+            sz: 12,
+            bold: true,
+            color: {
+              rgb: '000',
             },
-            alignment: {
-              horizontal: 'right',
+          },
+          alignment: {
+            horizontal: 'center',
+          },
+          border: {
+            right: {
+              style: 'thick',
             },
-            border: {
-            
-              top: {
-                style: 'medium',
-              },
-              bottom: {
-                style: 'thick',
-              },
-              right: {
-                style: 'medium',
-              },
-              left: {
-                style: 'medium',
-              },
+            top: {
+              style: 'thick',
             },
-          }
+            bottom: {
+              style: 'thick',
+            },
+           
+           
+          },
         }
-        if(colun === 4){
-          sheet[celulas[row][colun]].s = {
-            font: {
-              sz: 12,
-              bold: true,
-              color: {
-                rgb: '000',
-              },
-            },
-            alignment: {
-              horizontal: 'center',
-            },
-            border: {
-              top: {
-                style: 'thick',
-              },
-              bottom: {
-                style: 'thick',
-              },
-              right: {
-                style: 'thick',
-              },
-              left: {
-                style: 'thick',
-              },
-            },
-          }
-        }
+      }
+
     })
-  }
+
+   
 
   return sheet
 } 

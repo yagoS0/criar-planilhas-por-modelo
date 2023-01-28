@@ -3,84 +3,67 @@ import XLSX from 'xlsx-js-style'
 
 export default async function StyleReceitaVenda(
   sheet:XLSX.WorkSheet,celulas:string[][],indiceReceitaVenda: number[]){
+    const letras: number[] = [0,1,2,3,4]
 
-  const letras: number[] = [0,1,2,3,4]
-
-  // Cabeçalhos   
+    const rowInicio = indiceReceitaVenda[0]
+    const rowFinal = indiceReceitaVenda[1]
   
+    // Cabeçalhos   
     letras.map(async (colun)=>{
-      sheet[celulas[indiceReceitaVenda[0]-2][colun]].s = {
-        font: {
-          sz: 12,
-          bold: true,
-          color: {
-            rgb: '000',
+      if(rowInicio === indiceReceitaVenda[0]){
+  
+        // Rows do meio 
+        for (let index = 0; index <= rowFinal; index++) {
+          
+          sheet[celulas[index][colun]].s = {
+            font: {
+              sz: 12,
+              bold: false,
+              color: {
+                rgb: '000',
+              },
+            },
+            alignment: {
+              horizontal: 'left',
+            },
+            border: {
+              top: {
+                style: 'medium',
+              },
+              bottom: {
+                style: 'medium',
+              },
+              right: {
+                style: 'thick',
+              },
+              left: {
+                style: 'medium',
+              },
+            },
+          }
+        }
+        sheet[celulas[rowFinal-1][colun]].s = {
+          font: {
+            sz: 12,
+            bold: false,
+            color: {
+              rgb: '000',
+            },
           },
-        },
-        alignment: {
-          horizontal: 'center',
-        },
-        border: {
-          top: {
-            style: 'thick',
+          alignment: {
+            horizontal: 'right',
           },
-          bottom: {
-            style: 'thick',
+          border: {
+            top: {
+              style: 'thick',
+            },
+            bottom: {
+              style: 'thick',
+            },
+          
           },
-         
-        },
-      }
-      sheet[celulas[indiceReceitaVenda[0]-1][colun]].s = {
-        font: {
-          sz: 12,
-          bold: true,
-          color: {
-            rgb: '000',
-          },
-        },
-        alignment: {
-          horizontal: 'center',
-        },
-        border: {
-          top: {
-            style: 'thick',
-          },
-          bottom: {
-            style: 'thick',
-          },
-         
-        },
-      }
-        
-      // Meio da tabela
-      sheet[celulas[indiceReceitaVenda[0]][colun]].s = {
-        font: {
-          sz: 12,
-          bold: false,
-          color: {
-            rgb: '000',
-          },
-        },
-        alignment: {
-          horizontal: 'left',
-        },
-        border: {
-          top: {
-            style: 'medium',
-          },
-          bottom: {
-            style: 'medium',
-          },
-          right: {
-            style: 'medium',
-          },
-          left: {
-            style: 'medium',
-          },
-        },
-      }
-      // Ultima linha da tabela
-        sheet[celulas[indiceReceitaVenda[1]][colun]].s = {
+        }
+        sheet[celulas[rowFinal][colun]].s = {
           font: {
             sz: 12,
             bold: false,
@@ -92,24 +75,43 @@ export default async function StyleReceitaVenda(
             horizontal: 'left',
           },
           border: {
-          
             top: {
-              style: 'medium',
+              style: 'thick',
             },
             bottom: {
               style: 'thick',
             },
-            right: {
+            rigth: {
               style: 'thick',
             },
             left: {
-              style: 'medium',
+              style: 'thick',
             },
           },
         }
-
-      // Penultima linha da tabela
-        sheet[celulas[indiceReceitaVenda[1]-1][colun]].s = {
+          
+        //Cabeçalhos
+        sheet[celulas[rowInicio-3][colun]].s = {
+          font: {
+            sz: 16,
+            bold: true,
+            color: {
+              rgb: '000',
+            },
+          },
+          alignment: {
+            horizontal: 'center',
+          },
+          border: {
+            top: {
+              style: 'thick',
+            },
+            bottom: {
+              style: 'thick',
+            },
+          },
+        }
+        sheet[celulas[rowInicio-2][colun]].s = {
           font: {
             sz: 12,
             bold: true,
@@ -118,30 +120,18 @@ export default async function StyleReceitaVenda(
             },
           },
           alignment: {
-            horizontal: 'right',
+            horizontal: 'center',
           },
           border: {
-          
             top: {
-              style: 'medium',
+              style: 'thick',
             },
             bottom: {
               style: 'thick',
             },
-            right: {
-              style: 'medium',
-            },
-            left: {
-              style: 'medium',
-            },
           },
         }
-     
-
-      ////
-      // Bold Canto direito
-      if(colun === 4){
-        sheet[celulas[indiceReceitaVenda[0]][colun]].s = {
+        sheet[celulas[rowInicio-1][colun]].s = {
           font: {
             sz: 12,
             bold: true,
@@ -167,11 +157,59 @@ export default async function StyleReceitaVenda(
             },
           },
         }
-
-        sheet[celulas[indiceReceitaVenda[0]-2][colun]].s = {
+  
+        if(colun === 4){
+          sheet[celulas[rowInicio-3][colun]].s = {
+            font: {
+              sz: 16,
+              bold: true,
+              color: {
+                rgb: '000',
+              },
+            },
+            alignment: {
+              horizontal: 'center',
+            },
+            border: {
+              right: {
+                style: 'thick',
+              },
+           
+            },
+          }
+  
+          sheet[celulas[rowFinal-1][colun]].s = {
+            font: {
+              sz: 12,
+              bold: false,
+              color: {
+                rgb: '000',
+              },
+            },
+            alignment: {
+              horizontal: 'right',
+            },
+            border: {
+              top: {
+                style: 'thick',
+              },
+              bottom: {
+                style: 'thick',
+              },
+              right: {
+                style: 'thick',
+              },
+              left: {
+                style: 'thick',
+              },
+            
+            },
+          }
+  
+          sheet[celulas[rowInicio-2][colun]].s = {
           font: {
             sz: 12,
-            bold: true,
+            bold: false,
             color: {
               rgb: '000',
             },
@@ -186,17 +224,88 @@ export default async function StyleReceitaVenda(
             top: {
               style: 'thick',
             },
+          
+          },
+        }
+  
+        sheet[celulas[rowInicio+1][colun]].s = {
+          font: {
+            sz: 12,
+            bold: false,
+            color: {
+              rgb: '000',
+            },
+          },
+          alignment: {
+            horizontal: 'center',
+          },
+          border: {
+          
             bottom: {
               style: 'thick',
             },
-           
-           
+            right: {
+              style: 'thick',
+            },
+          },
+        }
+        sheet[celulas[rowInicio][colun]].s = {
+          font: {
+            sz: 12,
+            bold: false,
+            color: {
+              rgb: '000',
+            },
+          },
+          alignment: {
+            horizontal: 'center',
+          },
+          border: {
+            top: {
+              style: 'thick',
+            },
+            bottom: {
+              style: 'thick',
+            },
+            right: {
+              style: 'thick',
+            },
+            left: {
+              style: 'thick',
+            },
+          },
+        }
+        sheet[celulas[rowFinal][colun]].s = {
+          font: {
+            sz: 12,
+            bold: false,
+            color: {
+              rgb: '000',
+            },
+          },
+          alignment: {
+            horizontal: 'left',
+          },
+          border: {
+            top: {
+              style: 'thick',
+            },
+            bottom: {
+              style: 'thick',
+            },
+            right: {
+              style: 'thick',
+            },
+            left: {
+              style: 'thick',
+            },
           },
         }
       }
-
+        
+      }
+  
     })
-
    
 
   return sheet

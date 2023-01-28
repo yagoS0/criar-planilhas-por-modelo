@@ -294,7 +294,7 @@ export default async function StyleReceitaServico(
           bottom: {
             style: 'thick',
           },
-          rigth: {
+          right: {
             style: 'thick',
           },
           left: {

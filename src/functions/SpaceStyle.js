@@ -2,7 +2,7 @@ export default async function SpaceStyle(sheet) {
 
    
   sheet['!cols'] = [
-    { wpx: 62 },
+    { wpx: 66 },
     { wpx: 53 },
     { wpx: 53 },
     { wpx: 350 },

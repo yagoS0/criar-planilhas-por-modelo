@@ -157,7 +157,6 @@ export default async function styleSheet(sheet:XLSX.WorkSheet,
     var indiceReceitaPresumido: number[] = []
     var indiceCompra: number[] = []
  // Compras
- 
     coluns.map(async (colun, index) => {
       if(colun.debitoValue === 524) {
         indiceCompra.push(index)
@@ -191,7 +190,7 @@ export default async function styleSheet(sheet:XLSX.WorkSheet,
         indiceReceitaPresumido.push(index)
       }
 
-    })
+    }) 
 
     // Receita Serviço
     if(indiceReceitaServiço.length === 2){
@@ -209,6 +208,28 @@ export default async function styleSheet(sheet:XLSX.WorkSheet,
     //Compras
     if(indiceCompra.length > 0){
       await StyleCompras(sheet,celulas,indiceCompra)
+
+      if(indiceCompra.length = 2){
+        const ultimaLinha =  indiceCompra[1]
+        console.log(sheet)
+        for (let index = ultimaLinha+2; index < 100; index++) {
+          letras.map((colun)=>{
+            sheet[celulas[index][colun]] = {v: ' '} 
+          })
+  
+        }
+      }
+      if(indiceCompra.length = 1){
+        const ultimaLinha =  indiceCompra[0]
+        console.log(sheet)
+        for (let index = ultimaLinha+2; index < 100; index++) {
+          letras.map((colun)=>{
+            sheet[celulas[index][colun]] = {v: ' '} 
+          })
+  
+        }
+      }
+  
     }
 
     

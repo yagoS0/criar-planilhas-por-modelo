@@ -156,6 +156,9 @@ export default async function styleSheet(sheet:XLSX.WorkSheet,
     var indiceReceitaVenda: number[] = []
     var indiceReceitaPresumido: number[] = []
     var indiceCompra: number[] = []
+    var indiceFolha: number[] = []
+
+
  // Compras
     coluns.map(async (colun, index) => {
       if(colun.debitoValue === 524) {
@@ -164,10 +167,18 @@ export default async function styleSheet(sheet:XLSX.WorkSheet,
       if(colun.debitoValue === 526) {
         indiceCompra.push(index)
       }
-
+       //folha
+      if(colun.debitoValue === 428){
+        if(indiceFolha.length === 0 ){
+          indiceFolha.push(index)
+        }else{
+          console.log('ja pegamos')
+        }
+      }
     })
   
     coluns.map(async (colun, index) => {
+
       // Receita Serviço
       if(colun.creditoValue === 372) {
         indiceReceitaServiço.push(index)
@@ -190,49 +201,56 @@ export default async function styleSheet(sheet:XLSX.WorkSheet,
         indiceReceitaPresumido.push(index)
       }
 
-    }) 
+    })   
 
+
+    console.log(indiceFolha)
+    if(indiceFolha.length === 1){
+      for (let index = indiceFolha[0]-2; index < 100; index++) {
+        letras.map((colun)=>{
+          sheet[celulas[index][colun]] = {v: ' '} 
+        })
+      }
+    }
+   
     // Receita Serviço
     if(indiceReceitaServiço.length === 2){
       await StyleReceitaServico(sheet,celulas,indiceReceitaServiço)
+        if(indiceCompra.length > 0){
+          await StyleCompras(sheet,celulas,indiceCompra)
+        }else{
+          for (let index = indiceReceitaServiço[1]+2; index < 100; index++) {
+            letras.map((colun)=>{
+              sheet[celulas[index][colun]] = {v: ' '} 
+            })
+    
+          }
+        }
+    
     }
 
     // Receita Venda
     if(indiceReceitaVenda.length === 2){
       await StyleReceitaVenda(sheet,celulas,indiceReceitaVenda)
+      if(indiceCompra.length > 0){
+        await StyleCompras(sheet,celulas,indiceCompra)
+      }else{
+        for (let index = indiceReceitaServiço[1]+2; index < 100; index++) {
+          letras.map((colun)=>{
+            sheet[celulas[index][colun]] = {v: ' '} 
+          })
+  
+        }
+      }
     }
     //Receita Presumido
     if(indiceReceitaPresumido.length === 2){
       await StyleReceitaPresumido(sheet,celulas,indiceReceitaPresumido)
     }
-    //Compras
-    if(indiceCompra.length > 0){
-      await StyleCompras(sheet,celulas,indiceCompra)
 
-      if(indiceCompra.length = 2){
-        const ultimaLinha =  indiceCompra[1]
-        console.log(sheet)
-        for (let index = ultimaLinha+2; index < 100; index++) {
-          letras.map((colun)=>{
-            sheet[celulas[index][colun]] = {v: ' '} 
-          })
-  
-        }
-      }
-      if(indiceCompra.length = 1){
-        const ultimaLinha =  indiceCompra[0]
-        console.log(sheet)
-        for (let index = ultimaLinha+2; index < 100; index++) {
-          letras.map((colun)=>{
-            sheet[celulas[index][colun]] = {v: ' '} 
-          })
-  
-        }
-      }
-  
-    }
-
+    
     
     return sheet
 }
- 
+
+

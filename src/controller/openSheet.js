@@ -10,7 +10,7 @@ export default async function execute(dir) {
 
   console.log(dir)
   const files = fs.readdirSync(dir);
-
+  
   const dirNovasPlanilhas = `/Novas-Planilhas${Math.random() * 10}`
 
   fs.mkdirSync(`${dir}${dirNovasPlanilhas}`)

@@ -1,4 +1,5 @@
 import XLSX from 'xlsx-js-style'
+import InsertFolhaInTable from './InsertFolhaInTable';
 import StyleCompras from './StyleFunctions/StyleCompras';
 import StyleReceitaPresumido from './StyleFunctions/StyleReceitaPresumido';
 
@@ -204,13 +205,16 @@ export default async function styleSheet(sheet:XLSX.WorkSheet,
     })   
 
 
-    console.log(indiceFolha)
+
+    // Apenas folha
     if(indiceFolha.length === 1){
       for (let index = indiceFolha[0]-2; index < 100; index++) {
         letras.map((colun)=>{
           sheet[celulas[index][colun]] = {v: ' '} 
         })
       }
+      await InsertFolhaInTable(sheet,celulas,indiceFolha)
+
     }
    
     // Receita Serviço
@@ -218,15 +222,21 @@ export default async function styleSheet(sheet:XLSX.WorkSheet,
       await StyleReceitaServico(sheet,celulas,indiceReceitaServiço)
         if(indiceCompra.length > 0){
           await StyleCompras(sheet,celulas,indiceCompra)
+         
+          for (let index = indiceCompra[1]+2; index < 100; index++) {
+              letras.map((colun)=>{
+                sheet[celulas[index][colun]] = {v: ' '} 
+              })
+              await InsertFolhaInTable(sheet,celulas,indiceCompra)
+            }
         }else{
           for (let index = indiceReceitaServiço[1]+2; index < 100; index++) {
             letras.map((colun)=>{
               sheet[celulas[index][colun]] = {v: ' '} 
             })
-    
           }
+          await InsertFolhaInTable(sheet,celulas,indiceReceitaServiço)
         }
-    
     }
 
     // Receita Venda
@@ -234,19 +244,33 @@ export default async function styleSheet(sheet:XLSX.WorkSheet,
       await StyleReceitaVenda(sheet,celulas,indiceReceitaVenda)
       if(indiceCompra.length > 0){
         await StyleCompras(sheet,celulas,indiceCompra)
-      }else{
-        for (let index = indiceReceitaServiço[1]+2; index < 100; index++) {
+
+        for (let index = indiceCompra[1]+1; index < 100; index++) {
           letras.map((colun)=>{
             sheet[celulas[index][colun]] = {v: ' '} 
           })
-  
         }
+        await InsertFolhaInTable(sheet,celulas,indiceCompra)
+
+        
+      }else{
+        for (let index = indiceReceitaVenda[1]+2; index < 100; index++) {
+          letras.map((colun)=>{
+            sheet[celulas[index][colun]] = {v: ' '}  
+          })
+        }
+        await InsertFolhaInTable(sheet,celulas,indiceReceitaVenda)
+
       }
     }
     //Receita Presumido
     if(indiceReceitaPresumido.length === 2){
       await StyleReceitaPresumido(sheet,celulas,indiceReceitaPresumido)
+      await InsertFolhaInTable(sheet,celulas,indiceReceitaPresumido)
+
     }
+
+
 
     
     

@@ -32,11 +32,10 @@ export default async function execute(dir) {
       const bookSheets =  workbook.Sheets[workbook.SheetNames[sheetNumber]]
 
       const rowObject = await MapRows(sheetNumber,bookSheets)
-
-      
-      await styleSheet(bookSheets, rowObject)
       
       await SpaceStyle(bookSheets)
+
+      await styleSheet(bookSheets, rowObject)
 
         
       sheets.push(bookSheets)

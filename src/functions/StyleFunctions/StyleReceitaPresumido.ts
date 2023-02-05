@@ -8,7 +8,6 @@ export default async function StyleReceitaPresumido(
 
   // Cabeçalhos   
   for (let row = indiceReceitaPresumido[0]-2; row <= indiceReceitaPresumido[1]; row++) {
-  
     letras.map(async (colun)=>{
       if(row === indiceReceitaPresumido[0]-2){
         sheet[celulas[row][colun]].s = {

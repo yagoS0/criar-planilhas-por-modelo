@@ -13,7 +13,7 @@ export default async function styleSheet(sheet:XLSX.WorkSheet,
     creditoValue: number;
     textValue: string;
     value: string;
-}[] ){
+}[]){
 
 
     const celulas = [
@@ -213,7 +213,7 @@ export default async function styleSheet(sheet:XLSX.WorkSheet,
           sheet[celulas[index][colun]] = {v: ' '} 
         })
       }
-      await InsertFolhaInTable(sheet,celulas,indiceFolha)
+      await InsertFolhaInTable(sheet,celulas,indiceFolha, coluns)
 
     }
    
@@ -227,7 +227,7 @@ export default async function styleSheet(sheet:XLSX.WorkSheet,
               letras.map((colun)=>{
                 sheet[celulas[index][colun]] = {v: ' '} 
               })
-              await InsertFolhaInTable(sheet,celulas,indiceCompra)
+              await InsertFolhaInTable(sheet,celulas,indiceCompra, coluns)
             }
         }else{
           for (let index = indiceReceitaServiço[1]+2; index < 100; index++) {
@@ -235,7 +235,7 @@ export default async function styleSheet(sheet:XLSX.WorkSheet,
               sheet[celulas[index][colun]] = {v: ' '} 
             })
           }
-          await InsertFolhaInTable(sheet,celulas,indiceReceitaServiço)
+          await InsertFolhaInTable(sheet,celulas,indiceReceitaServiço,coluns)
         }
     }
 
@@ -250,7 +250,7 @@ export default async function styleSheet(sheet:XLSX.WorkSheet,
             sheet[celulas[index][colun]] = {v: ' '} 
           })
         }
-        await InsertFolhaInTable(sheet,celulas,indiceCompra)
+        await InsertFolhaInTable(sheet,celulas,indiceCompra, coluns)
 
         
       }else{
@@ -259,14 +259,14 @@ export default async function styleSheet(sheet:XLSX.WorkSheet,
             sheet[celulas[index][colun]] = {v: ' '}  
           })
         }
-        await InsertFolhaInTable(sheet,celulas,indiceReceitaVenda)
+        await InsertFolhaInTable(sheet,celulas,indiceReceitaVenda,coluns)
 
       }
     }
     //Receita Presumido
     if(indiceReceitaPresumido.length === 2){
       await StyleReceitaPresumido(sheet,celulas,indiceReceitaPresumido)
-      await InsertFolhaInTable(sheet,celulas,indiceReceitaPresumido)
+      await InsertFolhaInTable(sheet,celulas,indiceReceitaPresumido, coluns)
 
     }
 

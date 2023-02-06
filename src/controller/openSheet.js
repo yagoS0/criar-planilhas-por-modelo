@@ -35,7 +35,7 @@ export default async function execute(dir) {
       
       await SpaceStyle(bookSheets)
 
-      await styleSheet(bookSheets, rowObject)
+      await styleSheet(bookSheets, rowObject, sheetNumber)
 
         
       sheets.push(bookSheets)

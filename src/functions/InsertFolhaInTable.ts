@@ -10,7 +10,7 @@ export default async function InsertFolhaInTable(
     value: string;
    }[] ){
 
-
+    let campo 
     const data = coluns[3].dataValue
 
     const splitDateText = data.split('/')
@@ -38,85 +38,116 @@ export default async function InsertFolhaInTable(
 
     ]
 
+      let numero = indice[0] + 5
+      const A = 0
+      const B = 1
+      const C = 2 
+      const D = 3
+      const E = 4
 
-    const letras: number[] = [0,1,2,3,4]
 
-    let numero = indice[0] + 5
-    console.log(numero)
+    const styleCabecalho = {
+      font: {
+        sz: 12,
+        bold: true,
+        color: {
+          rgb: '000',
+        },
+      },
+      alignment: {
+        horizontal: 'center',
+      },
+      border: {
+        top: {
+          style: 'thick',
+        },
+        bottom: {
+          style: 'thick',
+        },
+    },
+  } 
+    const styleCabecalhoCanto ={
+      font: {
+        sz: 12,
+        bold: true,
+        color: {
+          rgb: '000',
+        },
+      },
+      alignment: {
+        horizontal: 'center',
+      },
+      border: {
+        top: {
+          style: 'thick',
+        },
+        bottom: {
+          style: 'thick',
+        },
+        right: {
+          style: 'thick',
+        },
+    },
+  } 
+    const cabeçalho = [
+      {v: " ", s: styleCabecalho},
+      {v: " ", s: styleCabecalho},
+      {v: " ", s: styleCabecalho},
+      {v: `${arrayMonthText[indiceMes]}/${year} FOLHA `, s: styleCabecalho},
+      {v: " ", s: styleCabecalhoCanto},
+    ];
+    campo = cabeçalho
+    sheet[celulas[numero][A]] = campo[A]
+    sheet[celulas[numero][B]] = campo[B]
+    sheet[celulas[numero][C]] = campo[C]
+    sheet[celulas[numero][D]] = campo[D]
+    sheet[celulas[numero][E]] = campo[E]
 
-    // cabeçalho
-    sheet[celulas[numero][0]] = {
-      v: " ",
-      s:{
-        font: {
-          sz: 12,
-          bold: false,
-          color: {
-            rgb: '000',
-          },
+
+
+    const styleTablea = {
+      font: {
+        sz: 12,
+        bold: true,
+        color: {
+          rgb: '000',
         },
-      alignment: {
-          horizontal: 'center',
-        },
-      border: {
-          top: {
-            style: 'thick',
-          },
-          bottom: {
-            style: 'thick',
-          },
-       
       },
-    }}
-    sheet[celulas[numero][1]] = {
-      v: " ",
-      s:{
-        font: {
-          sz: 12,
-          bold: false,
-          color: {
-            rgb: '000',
-          },
-        },
-      alignment: {
-          horizontal: 'center',
-        },
-      border: {
-          top: {
-            style: 'thick',
-          },
-          bottom: {
-            style: 'thick',
-          },
-     
+    alignment: {
+        horizontal: 'center',
       },
-    }}
-    sheet[celulas[numero][2]] = {
-      v: " ",
-      s:{
-        font: {
-          sz: 12,
-          bold: false,
-          color: {
-            rgb: '000',
-          },
+    border: {
+        top: {
+          style: 'thick',
         },
-      alignment: {
-          horizontal: 'left',
+        bottom: {
+          style: 'thick',
         },
-      border: {
-          top: {
-            style: 'thick',
-          },
-          bottom: {
-            style: 'thick',
-          },
-         
-      },
-    }}
-    sheet[celulas[numero][3]] = {
-      v: `${arrayMonthText[indiceMes]}/${year} FOLHA`,
-      s:{
+        right: {
+          style: 'thick',
+        },
+        left: {
+          style: 'thick',
+        },
+    },
+  }
+    const table = [
+      {v: "DATA", s: styleTablea},
+      {v: "DEBITO", s: styleTablea},
+      {v: "CREDITO", s: styleTablea},
+      {v: "HISTORICO", s: styleTablea},
+      {v: "VALOR", s: styleTablea},
+    ];
+    campo = table
+    numero += 1
+    sheet[celulas[numero][A]] = campo[A]
+    sheet[celulas[numero][B]] = campo[B]
+    sheet[celulas[numero][C]] = campo[C]
+    sheet[celulas[numero][D]] = campo[D]
+    sheet[celulas[numero][E]] = campo[E]
+
+
+    const stylePadrao = {
         font: {
           sz: 12,
           bold: true,
@@ -129,40 +160,134 @@ export default async function InsertFolhaInTable(
         },
       border: {
           top: {
-            style: 'thick',
+            style: 'medium',
           },
           bottom: {
+            style: 'medium',
+          },
+          right: {
             style: 'thick',
           },
-        
+          left: {
+            style: 'medium',
+          },
       },
-    }}
-    sheet[celulas[numero][4]] = {
-      v:" ",
-      s:{
-        font: {
-          sz: 12,
-          bold: true,
-          color: {
-            rgb: '000',
-          },
+    }
+    const stylePadraoCanto = {
+      font: {
+        sz: 12,
+        bold: true,
+        color: {
+          rgb: '000',
         },
-      alignment: {
-          horizontal: 'center',
-        },
-      border: {
-          top: {
-            style: 'thick',
-          },
-          bottom: {
-            style: 'thick',
-          },
-         
       },
-    }}
+    alignment: {
+        horizontal: 'center',
+      },
+    border: {
+        top: {
+          style: 'medium',
+        },
+        bottom: {
+          style: 'medium',
+        },
+        right: {
+          style: 'thick',
+        },
+        left: {
+          style: 'thick',
+        },
+    },
+    }
+    const stylePadraoFinal = {
+    font: {
+      sz: 12,
+      bold: true,
+      color: {
+        rgb: '000',
+      },
+    },
+  alignment: {
+      horizontal: 'center',
+    },
+  border: {
+      top: {
+        style: 'medium',
+      },
+      bottom: {
+        style: 'thick',
+      },
+      right: {
+        style: 'medium',
+      },
+      left: {
+        style: 'medium',
+      },
+  },
+    }
+    const stylePadraoFinalCanto = {
+  font: {
+    sz: 12,
+    bold: true,
+    color: {
+      rgb: '000',
+    },
+  },
+alignment: {
+    horizontal: 'center',
+  },
+border: {
+    top: {
+      style: 'medium',
+    },
+    bottom: {
+      style: 'thick',
+    },
+    right: {
+      style: 'medium',
+    },
+    left: {
+      style: 'thick',
+    },
+},
+    }
 
+
+    const salarioProLab = [
+      {v: data, s: stylePadrao},
+      {v: "428", s: stylePadrao},
+      {v: " ", s: stylePadrao},
+      {v: `VR REF PRO LAB FP ${dateText} `, s: stylePadrao},
+      {v: " ", s: stylePadraoCanto},
+    ];
+    campo = salarioProLab
+    numero += 1
+    sheet[celulas[numero][A]] = campo[A]
+    sheet[celulas[numero][B]] = campo[B]
+    sheet[celulas[numero][C]] = campo[C]
+    sheet[celulas[numero][D]] = campo[D]
+    sheet[celulas[numero][E]] = campo[E]
+
+
+    const inssProLab = [
+      {v: data, s: stylePadrao},
+      {v: " ", s: stylePadrao},
+      {v: "240", s: stylePadrao},
+      {v: `VR REF INSS S/PRO LAB FP ${dateText} `, s: stylePadrao},
+      {v: " ", s: stylePadraoCanto},
+    ];
+    campo = inssProLab
+    numero += 1
+    sheet[celulas[numero][A]] = campo[A]
+    sheet[celulas[numero][B]] = campo[B]
+    sheet[celulas[numero][C]] = campo[C]
+    sheet[celulas[numero][D]] = campo[D]
+    sheet[celulas[numero][E]] = campo[E]
+
+  
+  
     
-
+/*
  // cabeçalho 2
  sheet[celulas[numero+1][0]] = {
   v: "DATA",
@@ -1032,6 +1157,7 @@ sheet[celulas[numero+1][4]] = {
     ///////
 
       // INSS FOLHA
+      const inssFolha = celulas[numero + 7][0]
       c = 7
       sheet[celulas[numero + c][0]] = {
         v: data,
@@ -2775,7 +2901,7 @@ sheet[celulas[numero+1][4]] = {
          },
        border: {
            top: {
-             style: 'thick',
+             style: 'medium',
            },
            bottom: {
              style: 'thick',
@@ -2803,7 +2929,7 @@ sheet[celulas[numero+1][4]] = {
          },
        border: {
            top: {
-             style: 'thick',
+             style: 'medium',
            },
            bottom: {
              style: 'thick',
@@ -2831,7 +2957,7 @@ sheet[celulas[numero+1][4]] = {
          },
        border: {
            top: {
-             style: 'thick',
+             style: 'medium',
            },
            bottom: {
              style: 'thick',
@@ -2859,7 +2985,7 @@ sheet[celulas[numero+1][4]] = {
          },
        border: {
            top: {
-             style: 'thick',
+             style: 'medium',
            },
            bottom: {
              style: 'thick',
@@ -2888,7 +3014,7 @@ sheet[celulas[numero+1][4]] = {
          },
        border: {
            top: {
-             style: 'thick',
+             style: 'medium',
            },
            bottom: {
              style: 'thick',
@@ -2902,7 +3028,746 @@ sheet[celulas[numero+1][4]] = {
        },
      }}
      ///////
+
+     //PULA LINHA
+      c = 20
+
+     sheet[celulas[numero+c][4]] = {
+      v:" ",
+      s:{
+        font: {
+          sz: 12,
+          bold: true,
+          color: {
+            rgb: '000',
+          },
+        },
+    
+      border: {
+          right: {
+            style: 'thick',
+          },
+          
+      },
+    }}
+    ///////
+
+    // FGTS FOLHA 
+    c = 21
+    sheet[celulas[numero + c][0]] = {
+      v: data,
+      s:{
+        font: {
+          sz: 12,
+          bold: false,
+          color: {
+            rgb: '000',
+          },
+        },
+      alignment: {
+          horizontal: 'center',
+        },
+      border: {
+          top: {
+            style: 'thick',
+          },
+          bottom: {
+            style: 'medium',
+          },
+          right: {
+            style: 'medium',
+          },
+          left: {
+            style: 'medium',
+          },
+      },
+    }}
+    sheet[celulas[numero + c ][1]] = {
+      v: "447",
+      s:{
+        font: {
+          sz: 12,
+          bold: false,
+          color: {
+            rgb: '000',
+          },
+        },
+      alignment: {
+          horizontal: 'center',
+        },
+      border: {
+          top: {
+            style: 'thick',
+          },
+          bottom: {
+            style: 'medium',
+          },
+          right: {
+            style: 'medium',
+          },
+          left: {
+            style: 'medium',
+          },
+      },
+    }}
+    sheet[celulas[numero+ c ][2]] = {
+      v: "242",
+      s:{
+        font: {
+          sz: 12,
+          bold: false,
+          color: {
+            rgb: '000',
+          },
+        },
+      alignment: {
+          horizontal: 'left',
+        },
+      border: {
+          top: {
+            style: 'thick',
+          },
+          bottom: {
+            style: 'medium',
+          },
+          right: {
+            style: 'medium',
+          },
+          left: {
+            style: 'medium',
+          },
+      },
+    }}
+    sheet[celulas[numero + c][3]] = {
+      v: `VR REF FGTS ${dateText}`,
+      s:{
+        font: {
+          sz: 12,
+          bold: false,
+          color: {
+            rgb: '000',
+          },
+        },
+      alignment: {
+          horizontal: 'left',
+        },
+      border: {
+          top: {
+            style: 'thick',
+          },
+          bottom: {
+            style: 'medium',
+          },
+          right: {
+            style: 'medium',
+          },
+          left: {
+            style: 'medium',
+          },
+      },
+    }}
+    sheet[celulas[numero+c][4]] = {
+      v:" ",
+      s:{
+        font: {
+          sz: 12,
+          bold: true,
+          color: {
+            rgb: '000',
+          },
+        },
+      alignment: {
+          horizontal: 'center',
+        },
+      border: {
+          top: {
+            style: 'thick',
+          },
+          bottom: {
+            style: 'medium',
+          },
+          right: {
+            style: 'thick',
+          },
+          left: {
+            style: 'medium',
+          },
+      },
+    }}
+    ///////
+
+    // sal materniadade
+    const salMaternidade = celulas[numero + 22][0]
+    c = 22
+    sheet[celulas[numero + c][0]] = {
+      v: data,
+      s:{
+        font: {
+          sz: 12,
+          bold: false,
+          color: {
+            rgb: '000',
+          },
+        },
+      alignment: {
+          horizontal: 'center',
+        },
+      border: {
+          top: {
+            style: 'medium',
+          },
+          bottom: {
+            style: 'medium',
+          },
+          right: {
+            style: 'medium',
+          },
+          left: {
+            style: 'medium',
+          },
+      },
+    }}
+    sheet[celulas[numero + c ][1]] = {
+      v: "240",
+      s:{
+        font: {
+          sz: 12,
+          bold: false,
+          color: {
+            rgb: '000',
+          },
+        },
+      alignment: {
+          horizontal: 'center',
+        },
+      border: {
+          top: {
+            style: 'medium',
+          },
+          bottom: {
+            style: 'medium',
+          },
+          right: {
+            style: 'medium',
+          },
+          left: {
+            style: 'medium',
+          },
+      },
+    }}
+    sheet[celulas[numero+ c ][2]] = {
+      v: "83",
+      s:{
+        font: {
+          sz: 12,
+          bold: false,
+          color: {
+            rgb: '000',
+          },
+        },
+      alignment: {
+          horizontal: 'left',
+        },
+      border: {
+          top: {
+            style: 'medium',
+          },
+          bottom: {
+            style: 'medium',
+          },
+          right: {
+            style: 'medium',
+          },
+          left: {
+            style: 'medium',
+          },
+      },
+    }}
+    sheet[celulas[numero + c][3]] = {
+      v: `VR REF SAL MATERNIDADE FP ${dateText}`,
+      s:{
+        font: {
+          sz: 12,
+          bold: false,
+          color: {
+            rgb: '000',
+          },
+        },
+      alignment: {
+          horizontal: 'left',
+        },
+      border: {
+          top: {
+            style: 'medium',
+          },
+          bottom: {
+            style: 'medium',
+          },
+          right: {
+            style: 'medium',
+          },
+          left: {
+            style: 'medium',
+          },
+      },
+    }}
+    sheet[celulas[numero+c][4]] = {
+      v:" ",
+      s:{
+        font: {
+          sz: 12,
+          bold: true,
+          color: {
+            rgb: '000',
+          },
+        },
+      alignment: {
+          horizontal: 'center',
+        },
+      border: {
+          top: {
+            style: 'medium',
+          },
+          bottom: {
+            style: 'medium',
+          },
+          right: {
+            style: 'thick',
+          },
+          left: {
+            style: 'medium',
+          },
+      },
+    }}
+    ///////
   
+
+      // INSS parte empresa
+      const inssEmpresa = celulas[numero + 23][0]
+      
+      c = 23
+      sheet[celulas[numero + c][0]] = {
+        v: data,
+        s:{
+          font: {
+            sz: 12,
+            bold: false,
+            color: {
+              rgb: '000',
+            },
+          },
+        alignment: {
+            horizontal: 'center',
+          },
+        border: {
+            top: {
+              style: 'medium',
+            },
+            bottom: {
+              style: 'medium',
+            },
+            right: {
+              style: 'medium',
+            },
+            left: {
+              style: 'medium',
+            },
+        },
+      }}
+      sheet[celulas[numero + c ][1]] = {
+        v: "446",
+        s:{
+          font: {
+            sz: 12,
+            bold: false,
+            color: {
+              rgb: '000',
+            },
+          },
+        alignment: {
+            horizontal: 'center',
+          },
+        border: {
+            top: {
+              style: 'medium',
+            },
+            bottom: {
+              style: 'medium',
+            },
+            right: {
+              style: 'medium',
+            },
+            left: {
+              style: 'medium',
+            },
+        },
+      }}
+      sheet[celulas[numero+ c ][2]] = {
+        v: "240",
+        s:{
+          font: {
+            sz: 12,
+            bold: false,
+            color: {
+              rgb: '000',
+            },
+          },
+        alignment: {
+            horizontal: 'left',
+          },
+        border: {
+            top: {
+              style: 'medium',
+            },
+            bottom: {
+              style: 'medium',
+            },
+            right: {
+              style: 'medium',
+            },
+            left: {
+              style: 'medium',
+            },
+        },
+      }}
+      sheet[celulas[numero + c][3]] = {
+        v: `VR REF INSS EMP ${dateText}`,
+        s:{
+          font: {
+            sz: 12,
+            bold: false,
+            color: {
+              rgb: '000',
+            },
+          },
+        alignment: {
+            horizontal: 'left',
+          },
+        border: {
+            top: {
+              style: 'medium',
+            },
+            bottom: {
+              style: 'medium',
+            },
+            right: {
+              style: 'medium',
+            },
+            left: {
+              style: 'medium',
+            },
+        },
+      }}
+      sheet[celulas[numero+c][4]] = {
+        v:" ",
+        s:{
+          font: {
+            sz: 12,
+            bold: true,
+            color: {
+              rgb: '000',
+            },
+          },
+        alignment: {
+            horizontal: 'center',
+          },
+        border: {
+            top: {
+              style: 'medium',
+            },
+            bottom: {
+              style: 'medium',
+            },
+            right: {
+              style: 'thick',
+            },
+            left: {
+              style: 'medium',
+            },
+        },
+      }}
+      ///////
+
+     // compensação INSS ref sal maternidade
+      const compInssMaternidade = celulas[numero + 24][0]
+     c = 24
+     sheet[celulas[numero + c][0]] = {
+       v: data,
+       s:{
+         font: {
+           sz: 12,
+           bold: false,
+           color: {
+             rgb: '000',
+           },
+         },
+       alignment: {
+           horizontal: 'center',
+         },
+       border: {
+           top: {
+             style: 'medium',
+           },
+           bottom: {
+             style: 'medium',
+           },
+           right: {
+             style: 'medium',
+           },
+           left: {
+             style: 'medium',
+           },
+       },
+     }}
+     sheet[celulas[numero + c ][1]] = {
+       v: "240",
+       s:{
+         font: {
+           sz: 12,
+           bold: false,
+           color: {
+             rgb: '000',
+           },
+         },
+       alignment: {
+           horizontal: 'center',
+         },
+       border: {
+           top: {
+             style: 'medium',
+           },
+           bottom: {
+             style: 'medium',
+           },
+           right: {
+             style: 'medium',
+           },
+           left: {
+             style: 'medium',
+           },
+       },
+     }}
+     sheet[celulas[numero+ c ][2]] = {
+       v: "83",
+       s:{
+         font: {
+           sz: 12,
+           bold: false,
+           color: {
+             rgb: '000',
+           },
+         },
+       alignment: {
+           horizontal: 'left',
+         },
+       border: {
+           top: {
+             style: 'medium',
+           },
+           bottom: {
+             style: 'medium',
+           },
+           right: {
+             style: 'medium',
+           },
+           left: {
+             style: 'medium',
+           },
+       },
+     }}
+     sheet[celulas[numero + c][3]] = {
+       v: `VR REF COMPENSACAO INSS REF SAL MTERNIDADE ${dateText}`,
+       s:{
+         font: {
+           sz: 12,
+           bold: false,
+           color: {
+             rgb: '000',
+           },
+         },
+       alignment: {
+           horizontal: 'left',
+         },
+       border: {
+           top: {
+             style: 'medium',
+           },
+           bottom: {
+             style: 'medium',
+           },
+           right: {
+             style: 'medium',
+           },
+           left: {
+             style: 'medium',
+           },
+       },
+     }}
+     sheet[celulas[numero+c][4]] = {
+       v:" ",
+       s:{
+         font: {
+           sz: 12,
+           bold: true,
+           color: {
+             rgb: '000',
+           },
+         },
+       alignment: {
+           horizontal: 'center',
+         },
+       border: {
+           top: {
+             style: 'medium',
+           },
+           bottom: {
+             style: 'medium',
+           },
+           right: {
+             style: 'thick',
+           },
+           left: {
+             style: 'medium',
+           },
+       },
+     }}
+     ///////
+   
+
+     // INSS A RECOLHER
+     c = 25
+     sheet[celulas[numero + c][0]] = {
+       v: data,
+       s:{
+         font: {
+           sz: 12,
+           bold: false,
+           color: {
+             rgb: '000',
+           },
+         },
+       alignment: {
+           horizontal: 'center',
+         },
+       border: {
+           top: {
+             style: 'medium',
+           },
+           bottom: {
+             style: 'thick',
+           },
+           
+       },
+     }}
+     sheet[celulas[numero + c ][1]] = {
+       v: " ",
+       s:{
+         font: {
+           sz: 12,
+           bold: false,
+           color: {
+             rgb: '000',
+           },
+         },
+       alignment: {
+           horizontal: 'center',
+         },
+       border: {
+           top: {
+             style: 'medium',
+           },
+           bottom: {
+             style: 'thick',
+           },
+          
+       },
+     }}
+     sheet[celulas[numero+ c ][2]] = {
+       v: " ",
+       s:{
+         font: {
+           sz: 12,
+           bold: false,
+           color: {
+             rgb: '000',
+           },
+         },
+       alignment: {
+           horizontal: 'left',
+         },
+       border: {
+           top: {
+             style: 'medium',
+           },
+           bottom: {
+             style: 'thick',
+           },
+          
+       },
+     }}
+     sheet[celulas[numero + c][3]] = {
+       v: `INSS A RECOLHER`,
+       s:{
+         font: {
+           sz: 12,
+           bold: true,
+           color: {
+             rgb: '000',
+           },
+         },
+       alignment: {
+           horizontal: 'right',
+         },
+       border: {
+           top: {
+             style: 'medium',
+           },
+           bottom: {
+             style: 'thick',
+           },
+           right: {
+             style: 'medium',
+           },
+          
+       },
+     }}
+
+    
+        sheet[celulas[numero+c][4]] = {
+          f: `=-${inssFolha}-${compInssMaternidade}+${inssEmpresa}`, 
+          v:" ",
+          s:{
+            font: {
+              sz: 12,
+              bold: true,
+              color: {
+                rgb: '000',
+              },
+            },
+          alignment: {
+              horizontal: 'center',
+            },
+          border: {
+              top: {
+                style: 'thick',
+              },
+              bottom: {
+                style: 'thick',
+              },
+              right: {
+                style: 'thick',
+              },
+              left: {
+                style: 'thick',
+              },
+          },      
+       }
+    } */
+
+     
+    
+     ///////
+    
 
   
   return sheet

@@ -20,9 +20,9 @@ export default async function execute(dir) {
 
     const workbook = XLSX.readFile(`${dir}/${file}`);
 
-    const sheet_range = workbook.SheetNames.length - 3
-    
-    const sheets = []
+    const newWorkBook =  XLSX.utils.book_new()
+
+    const pathFormated = `${dir}${dirNovasPlanilhas}/${file.toUpperCase()}`
        
     for(let sheetNumber = 0; sheetNumber <= 11; sheetNumber++ ){
       if (workbook.Sheets[workbook.SheetNames[sheetNumber]] === undefined) {
@@ -36,14 +36,12 @@ export default async function execute(dir) {
       await SpaceStyle(bookSheets)
 
       await styleSheet(bookSheets, rowObject, sheetNumber)
+      
+      XLSX.utils.book_append_sheet(newWorkBook, bookSheets)
+     
 
-        
-      sheets.push(bookSheets)
-        
-      if (sheet_range === 11) {
-        await SaveNewWorkBook(sheets,dir,file, dirNovasPlanilhas)
-      }
-    }    
+    } 
+    await XLSX.writeFile(newWorkBook, pathFormated)   
   })
 }
 

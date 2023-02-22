@@ -8,7 +8,6 @@ export default async function StyleReceitaServico(
 
   const rowInicio = indiceReceitaServiço[0]
   const rowFinal = indiceReceitaServiço[1]
-
   // Cabeçalhos   
   letras.map(async (colun)=>{
     if(rowInicio === indiceReceitaServiço[0]){

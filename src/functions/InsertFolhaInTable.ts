@@ -16,7 +16,6 @@ export default async function InsertFolhaInTable(
     const splitDateText = data.split('/')
 
 
-    console.log(splitDateText)
     const dateText = `${splitDateText[1]}/${splitDateText[2]}`
     const year = splitDateText[2]
 
@@ -38,7 +37,7 @@ export default async function InsertFolhaInTable(
 
     ]
 
-      let numero = indice[0] + 5
+      let numero = indice[0]
       const A = 0
       const B = 1
       const C = 2 
@@ -139,7 +138,7 @@ export default async function InsertFolhaInTable(
       {v: "VALOR", s: styleTablea},
     ];
     campo = table
-    numero += 1
+    numero ++
     sheet[celulas[numero][A]] = campo[A]
     sheet[celulas[numero][B]] = campo[B]
     sheet[celulas[numero][C]] = campo[C]
@@ -150,13 +149,13 @@ export default async function InsertFolhaInTable(
     const stylePadrao = {
         font: {
           sz: 12,
-          bold: true,
+          bold: false,
           color: {
             rgb: '000',
           },
         },
       alignment: {
-          horizontal: 'center',
+          horizontal: 'left',
         },
       border: {
           top: {
@@ -176,13 +175,13 @@ export default async function InsertFolhaInTable(
     const stylePadraoCanto = {
       font: {
         sz: 12,
-        bold: true,
+        bold: false,
         color: {
           rgb: '000',
         },
       },
     alignment: {
-        horizontal: 'center',
+        horizontal: 'left',
       },
     border: {
         top: {
@@ -195,73 +194,126 @@ export default async function InsertFolhaInTable(
           style: 'thick',
         },
         left: {
-          style: 'thick',
+          style: 'medium',
         },
     },
     }
     const stylePadraoFinal = {
-    font: {
-      sz: 12,
-      bold: true,
-      color: {
-        rgb: '000',
+      font: {
+        sz: 12,
+        bold: false,
+        color: {
+          rgb: '000',
+        },
       },
-    },
-  alignment: {
-      horizontal: 'center',
-    },
-  border: {
-      top: {
-        style: 'medium',
+      alignment: {
+          horizontal: 'left',
+        },
+      border: {
+          top: {
+            style: 'medium',
+          },
+          bottom: {
+            style: 'thick',
+          },
+          right: {
+            style: 'medium',
+          },
+          left: {
+            style: 'medium',
+          },
       },
-      bottom: {
-        style: 'thick',
-      },
-      right: {
-        style: 'medium',
-      },
-      left: {
-        style: 'medium',
-      },
-  },
     }
     const stylePadraoFinalCanto = {
-  font: {
-    sz: 12,
-    bold: true,
-    color: {
-      rgb: '000',
-    },
-  },
-alignment: {
-    horizontal: 'center',
-  },
-border: {
-    top: {
-      style: 'medium',
-    },
-    bottom: {
-      style: 'thick',
-    },
-    right: {
-      style: 'medium',
-    },
-    left: {
-      style: 'thick',
-    },
-},
+      font: {
+        sz: 12,
+        bold: false,
+        color: {
+          rgb: '000',
+        },
+      },
+      alignment: {
+          horizontal: 'left',
+        },
+      border: {
+          top: {
+            style: 'medium',
+          },
+          bottom: {
+            style: 'thick',
+          },
+          right: {
+            style: 'medium',
+          },
+          left: {
+            style: 'thick',
+          },
+      },
+    }
+
+    const stylePadraoDebitoCreditoFinal = {
+      font: {
+        sz: 12,
+        bold: false,
+        color: {
+          rgb: '000',
+        },
+      },
+      alignment: {
+          horizontal: 'center',
+        },
+      border: {
+          top: {
+            style: 'medium',
+          },
+          bottom: {
+            style: 'thick',
+          },
+          right: {
+            style: 'medium',
+          },
+          left: {
+            style: 'medium',
+          },
+      },
+    }
+    const stylePadraoDebitoCredito = {
+      font: {
+        sz: 12,
+        bold: false,
+        color: {
+          rgb: '000',
+        },
+      },
+      alignment: {
+          horizontal: 'center',
+        },
+      border: {
+          top: {
+            style: 'medium',
+          },
+          bottom: {
+            style: 'medium',
+          },
+          right: {
+            style: 'medium',
+          },
+          left: {
+            style: 'medium',
+          },
+      },
     }
 
 
     const salarioProLab = [
       {v: data, s: stylePadrao},
-      {v: "428", s: stylePadrao},
-      {v: " ", s: stylePadrao},
+      {v: "428", s: stylePadraoDebitoCredito},
+      {v: " ", s: stylePadraoDebitoCredito},
       {v: `VR REF PRO LAB FP ${dateText} `, s: stylePadrao},
       {v: " ", s: stylePadraoCanto},
     ];
     campo = salarioProLab
-    numero += 1
+    numero ++
     sheet[celulas[numero][A]] = campo[A]
     sheet[celulas[numero][B]] = campo[B]
     sheet[celulas[numero][C]] = campo[C]
@@ -271,13 +323,104 @@ border: {
 
     const inssProLab = [
       {v: data, s: stylePadrao},
-      {v: " ", s: stylePadrao},
-      {v: "240", s: stylePadrao},
+      {v: " ", s: stylePadraoDebitoCredito},
+      {v: "240", s: stylePadraoDebitoCredito},
       {v: `VR REF INSS S/PRO LAB FP ${dateText} `, s: stylePadrao},
       {v: " ", s: stylePadraoCanto},
     ];
     campo = inssProLab
-    numero += 1
+    numero ++
+    sheet[celulas[numero][A]] = campo[A]
+    sheet[celulas[numero][B]] = campo[B]
+    sheet[celulas[numero][C]] = campo[C]
+    sheet[celulas[numero][D]] = campo[D]
+    sheet[celulas[numero][E]] = campo[E]
+
+
+    const irrfProLab = [
+      {v: data, s: stylePadrao},
+      {v: " ", s: stylePadraoDebitoCredito},
+      {v: "257", s: stylePadraoDebitoCredito},
+      {v: `VR REF IRRF S/PRO LAB FP ${dateText} `, s: stylePadrao},
+      {v: " ", s: stylePadraoCanto},
+    ];
+    campo = irrfProLab
+    numero ++
+    sheet[celulas[numero][A]] = campo[A]
+    sheet[celulas[numero][B]] = campo[B]
+    sheet[celulas[numero][C]] = campo[C]
+    sheet[celulas[numero][D]] = campo[D]
+    sheet[celulas[numero][E]] = campo[E]
+
+    const proLabLiq = [
+      {v: data, s: stylePadraoFinal},
+      {v: " ", s: stylePadraoDebitoCreditoFinal},
+      {v: "233", s: stylePadraoDebitoCreditoFinal},
+      {v: `VR REF PRO LAB LIQ FP ${dateText} `, s: stylePadraoFinal},
+      {v: " ", s: stylePadraoFinalCanto},
+    ];
+    campo = proLabLiq
+    numero ++
+    sheet[celulas[numero][A]] = campo[A]
+    sheet[celulas[numero][B]] = campo[B]
+    sheet[celulas[numero][C]] = campo[C]
+    sheet[celulas[numero][D]] = campo[D]
+    sheet[celulas[numero][E]] = campo[E]
+
+    const salFolha = [
+      {v: data, s: stylePadrao},
+      {v: "428", s: stylePadraoDebitoCredito},
+      {v: " ", s: stylePadraoDebitoCredito},
+      {v: `VR REF SAL FP ${dateText} `, s: stylePadrao},
+      {v: " ", s: stylePadraoCanto},
+    ];
+    campo = salFolha
+    numero ++
+    sheet[celulas[numero][A]] = campo[A]
+    sheet[celulas[numero][B]] = campo[B]
+    sheet[celulas[numero][C]] = campo[C]
+    sheet[celulas[numero][D]] = campo[D]
+    sheet[celulas[numero][E]] = campo[E]
+
+    const inssFolha = [
+      {v: data, s: stylePadrao},
+      {v: " ", s: stylePadraoDebitoCredito},
+      {v: "240", s: stylePadraoDebitoCredito},
+      {v: `VR REF INSS FP ${dateText} `, s: stylePadrao},
+      {v: " ", s: stylePadraoCanto},
+    ];
+    campo = inssFolha
+    numero ++
+    sheet[celulas[numero][A]] = campo[A]
+    sheet[celulas[numero][B]] = campo[B]
+    sheet[celulas[numero][C]] = campo[C]
+    sheet[celulas[numero][D]] = campo[D]
+    sheet[celulas[numero][E]] = campo[E]
+
+    const salFamiliaFolha = [
+      {v: data, s: stylePadrao},
+      {v: "240", s: stylePadraoDebitoCredito},
+      {v: " ", s: stylePadraoDebitoCredito},
+      {v: `VR REF SAL FAMILIA FP ${dateText} `, s: stylePadrao},
+      {v: " ", s: stylePadraoCanto},
+    ];
+    campo = salFamiliaFolha
+    numero ++
+    sheet[celulas[numero][A]] = campo[A]
+    sheet[celulas[numero][B]] = campo[B]
+    sheet[celulas[numero][C]] = campo[C]
+    sheet[celulas[numero][D]] = campo[D]
+    sheet[celulas[numero][E]] = campo[E]
+
+    const feriaUmTerco = [
+      {v: data, s: stylePadrao},
+      {v: "240", s: stylePadraoDebitoCredito},
+      {v: " ", s: stylePadraoDebitoCredito},
+      {v: `VR REF FERIAS + 1/3 FP ${dateText} `, s: stylePadrao},
+      {v: " ", s: stylePadraoCanto},
+    ];
+    campo = feriaUmTerco
+    numero ++
     sheet[celulas[numero][A]] = campo[A]
     sheet[celulas[numero][B]] = campo[B]
     sheet[celulas[numero][C]] = campo[C]

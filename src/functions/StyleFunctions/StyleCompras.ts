@@ -5,7 +5,6 @@ export default async function StyleCompras(
   sheet:XLSX.WorkSheet,celulas:string[][],indiceCompra: number[]){
 
   const letras: number[] = [0,1,2,3,4]
-
   
   const rowInicio = indiceCompra[0]
   letras.map(colun => {

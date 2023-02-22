@@ -10,7 +10,6 @@ export default async function SaveNewWorkBook(sheets: XLSX.WorkSheet[], dir:stri
     XLSX.utils.book_append_sheet(workBook, sheet)
   });
   
-
   await XLSX.writeFile(workBook, pathFormated)
 
   console.log('saved')

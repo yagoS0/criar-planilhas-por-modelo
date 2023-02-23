@@ -59,18 +59,6 @@ export default async function execute(dir) {
 
       XLSX.utils.book_append_sheet(newWorkBook, bookSheets,arrayMonthText[sheetNumber])
 
-      console.log(newWorkBook)
-      try {
-         JSON.parse(JSON.stringify(newWorkBook));
-      } catch (error) {
-        if (error instanceof SyntaxError) {
-          console.error('Invalid JSON:', error.message);
-        } else {
-          throw error;
-        }
-      }
-
-
     } 
     await XLSX.writeFile(newWorkBook, pathFormated)
 

@@ -37,7 +37,7 @@ export default async function InsertFolhaInTable(
 
     ]
 
-      let numero = indice[0] + 5
+      let numero = indice[0] + 7
       const A = 0
       const B = 1
       const C = 2 
@@ -63,7 +63,7 @@ export default async function InsertFolhaInTable(
         bottom: {
           style: 'thick',
         },
-    },
+      },
   } 
     const styleCabecalhoCanto ={
       font: {
@@ -314,6 +314,7 @@ export default async function InsertFolhaInTable(
     ];
     campo = salarioProLab
     numero ++
+    const celSalarioProLab = celulas[numero][E]
     sheet[celulas[numero][A]] = campo[A]
     sheet[celulas[numero][B]] = campo[B]
     sheet[celulas[numero][C]] = campo[C]
@@ -346,6 +347,8 @@ export default async function InsertFolhaInTable(
     ];
     campo = irrfProLab
     numero ++
+
+    const celIrrfProLab = celulas[numero][E]
     sheet[celulas[numero][A]] = campo[A]
     sheet[celulas[numero][B]] = campo[B]
     sheet[celulas[numero][C]] = campo[C]
@@ -357,10 +360,11 @@ export default async function InsertFolhaInTable(
       {v: " ", s: stylePadraoDebitoCreditoFinal},
       {v: "233", s: stylePadraoDebitoCreditoFinal},
       {v: `VR REF PRO LAB LIQ FP ${dateText} `, s: stylePadraoFinal},
-      {v: " ", s: stylePadraoFinalCanto},
+      {v: " ", s: stylePadraoFinalCanto, f: `=SOMA(${celSalarioProLab}:${celIrrfProLab})`},
     ];
     campo = proLabLiq
     numero ++
+    const celProLabLiq = celulas[numero][E]
     sheet[celulas[numero][A]] = campo[A]
     sheet[celulas[numero][B]] = campo[B]
     sheet[celulas[numero][C]] = campo[C]
@@ -376,7 +380,7 @@ export default async function InsertFolhaInTable(
     ];
     campo = salFolha
     numero ++
-    const primeriaCelFolha = numero
+    const celSalarioFolha = celulas[numero][E]
     sheet[celulas[numero][A]] = campo[A]
     sheet[celulas[numero][B]] = campo[B]
     sheet[celulas[numero][C]] = campo[C]
@@ -392,6 +396,7 @@ export default async function InsertFolhaInTable(
     ];
     campo = inssFolha
     numero ++
+    const celInss = celulas[numero][E]
     sheet[celulas[numero][A]] = campo[A]
     sheet[celulas[numero][B]] = campo[B]
     sheet[celulas[numero][C]] = campo[C]
@@ -407,6 +412,7 @@ export default async function InsertFolhaInTable(
     ];
     campo = salFamiliaFolha
     numero ++
+    const celSalFamilia = celulas[numero][E]
     sheet[celulas[numero][A]] = campo[A]
     sheet[celulas[numero][B]] = campo[B]
     sheet[celulas[numero][C]] = campo[C]
@@ -484,6 +490,7 @@ export default async function InsertFolhaInTable(
     ];
     campo = feriasLiqFolha
     numero ++
+    const celFeriasLiq = celulas[numero][E]
     sheet[celulas[numero][A]] = campo[A]
     sheet[celulas[numero][B]] = campo[B]
     sheet[celulas[numero][C]] = campo[C]
@@ -530,6 +537,7 @@ export default async function InsertFolhaInTable(
     ];
     campo = rescisaoLiq
     numero ++
+    const celRescisaoLiq = celulas[numero][E]
     sheet[celulas[numero][A]] = campo[A]
     sheet[celulas[numero][B]] = campo[B]
     sheet[celulas[numero][C]] = campo[C]
@@ -561,7 +569,7 @@ export default async function InsertFolhaInTable(
     ];
     campo = valeTransporte
     numero ++
-    const UltimaCelFolha = numero
+    const celValeTransporte = celulas[numero][E]
     sheet[celulas[numero][A]] = campo[A]
     sheet[celulas[numero][B]] = campo[B]
     sheet[celulas[numero][C]] = campo[C]
@@ -574,15 +582,230 @@ export default async function InsertFolhaInTable(
       {v: " ", s: stylePadraoDebitoCreditoFinal},
       {v: "232", s: stylePadraoDebitoCreditoFinal},
       {v: `VR REF SAL LIQ FP ${dateText} `, s: stylePadraoFinal},
-      {v: " ", s: stylePadraoFinalCanto, f: `=SOMA(${primeriaCelFolha}:${UltimaCelFolha})`},
+      {v: " ", s: stylePadraoFinalCanto, f: `=SOMA(${celSalarioFolha}:${celValeTransporte})`},
     ];
     campo = salLiqFolha
+    numero ++
+    const celSalFolhaLiq = celulas[numero][E]
+    sheet[celulas[numero][A]] = campo[A]
+    sheet[celulas[numero][B]] = campo[B]
+    sheet[celulas[numero][C]] = campo[C]
+    sheet[celulas[numero][D]] = campo[D]
+    sheet[celulas[numero][E]] = campo[E]
+
+    const pulalinha = [
+      {v: " ", },
+      {v: " ", },
+      {v: " ", },
+      {v: " ", },
+      {v: " ", 
+        s: { 
+          border: {
+            right: {
+              style: 'thick',
+            },
+         }, 
+        }
+      },
+    ];
+    numero ++
+    
+    sheet[celulas[numero][E]] = pulalinha[E]
+    
+
+    const fgts = [
+      {v: data, s: stylePadrao},
+      {v: "447", s: stylePadraoDebitoCredito},
+      {v: "242", s: stylePadraoDebitoCredito},
+      {v: `VR REF FGTS FP ${dateText} `, s: stylePadrao},
+      {v: " ", s: stylePadraoCanto, },
+    ];
+    campo = fgts
     numero ++
     sheet[celulas[numero][A]] = campo[A]
     sheet[celulas[numero][B]] = campo[B]
     sheet[celulas[numero][C]] = campo[C]
     sheet[celulas[numero][D]] = campo[D]
     sheet[celulas[numero][E]] = campo[E]
+
+    const salMaternidade = [
+      {v: data, s: stylePadrao},
+      {v: "240", s: stylePadraoDebitoCredito},
+      {v: "83", s: stylePadraoDebitoCredito},
+      {v: `VR REF SAL MATERNIDADE FP ${dateText} `, s: stylePadrao},
+      {v: " ", s: stylePadraoCanto,},
+    ];
+    campo = salMaternidade
+    numero ++
+    const celMaternidade = celulas[numero][E]
+    sheet[celulas[numero][A]] = campo[A]
+    sheet[celulas[numero][B]] = campo[B]
+    sheet[celulas[numero][C]] = campo[C]
+    sheet[celulas[numero][D]] = campo[D]
+    sheet[celulas[numero][E]] = campo[E]
+
+    const inssEmp = [
+      {v: data, s: stylePadrao},
+      {v: "446", s: stylePadraoDebitoCredito},
+      {v: "240", s: stylePadraoDebitoCredito},
+      {v: `VR REF INSS EMP FP ${dateText} `, s: stylePadrao},
+      {v: " ", s: stylePadraoCanto,},
+    ];
+    campo = inssEmp
+    numero ++
+    const celInssEmp = celulas[numero][E]
+    sheet[celulas[numero][A]] = campo[A]
+    sheet[celulas[numero][B]] = campo[B]
+    sheet[celulas[numero][C]] = campo[C]
+    sheet[celulas[numero][D]] = campo[D]
+    sheet[celulas[numero][E]] = campo[E]
+
+
+    const compensacaoInss = [
+      {v: data, s: stylePadrao},
+      {v: "240", s: stylePadraoDebitoCredito},
+      {v: "83", s: stylePadraoDebitoCredito},
+      {v: `VR REF COMPENSACAO INSS REF SAL MATERNIDADE FP ${dateText} `, s: stylePadrao},
+      {v: " ", s: stylePadraoCanto,},
+    ];
+    campo = compensacaoInss
+    numero ++
+    const celCompesacaoInss = celulas[numero][E]
+    sheet[celulas[numero][A]] = campo[A]
+    sheet[celulas[numero][B]] = campo[B]
+    sheet[celulas[numero][C]] = campo[C]
+    sheet[celulas[numero][D]] = campo[D]
+    sheet[celulas[numero][E]] = campo[E]
+
+
+    const inssRecolher = [
+      {v: " ",  s: { 
+        border: {
+          bottom: {
+            style: 'medium',
+          },
+       }, 
+      }  },
+      {v: " ", s: { 
+        border: {
+          bottom: {
+            style: 'medium',
+          },
+       }, 
+      }  },
+      {v: " ", s: { 
+        border: {
+          bottom: {
+            style: 'medium',
+          },
+       }, 
+      }  },
+      {v: "INSS A RECOLHER", s: { 
+        font: {
+          sz: 12,
+          bold: true,
+        },
+        alignment: {
+          horizontal: 'right',
+        },
+        border: {
+          bottom: {
+            style: 'medium',
+          },
+       }, 
+      } },
+      {v: "", s: { 
+        border: {
+          bottom: {
+            style: 'thick',
+          },
+          top: {
+            style: 'thick',
+          },
+          left: {
+            style: 'thick',
+          },
+          right: {
+            style: 'thick',
+          },
+       }, 
+      }, f: `=-${celInss}-${celSalFamilia}-${celCompesacaoInss}-${celMaternidade}+${celInssEmp}` },
+    ];
+    campo = inssRecolher
+    numero ++
+    sheet[celulas[numero][A]] = campo[A]
+    sheet[celulas[numero][B]] = campo[B]
+    sheet[celulas[numero][C]] = campo[C]
+    sheet[celulas[numero][D]] = campo[D]
+    sheet[celulas[numero][E]] = campo[E]
+
+
+    numero ++
+    
+    sheet[celulas[numero][E]] = pulalinha[E]
+
+
+    const pagoSalario = [
+      {v: data, s: stylePadrao},
+      {v: "232", s: stylePadraoDebitoCredito},
+      {v: "5", s: stylePadraoDebitoCredito},
+      {v: `PAGO SALARIO ${dateText} `, s: stylePadrao},
+      {v: " ", s: stylePadraoCanto,f: `=${celSalFolhaLiq}`},
+    ];
+    campo = pagoSalario
+    numero ++
+    sheet[celulas[numero][A]] = campo[A]
+    sheet[celulas[numero][B]] = campo[B]
+    sheet[celulas[numero][C]] = campo[C]
+    sheet[celulas[numero][D]] = campo[D]
+    sheet[celulas[numero][E]] = campo[E]
+
+    const pagoProLab = [
+      {v: data, s: stylePadrao},
+      {v: "233", s: stylePadraoDebitoCredito},
+      {v: "5", s: stylePadraoDebitoCredito},
+      {v: `PAGO PRO-LAB ${dateText} `, s: stylePadrao},
+      {v: " ", s: stylePadraoCanto,f: `=${celProLabLiq}`},
+    ];
+    campo = pagoProLab
+    numero ++
+    sheet[celulas[numero][A]] = campo[A]
+    sheet[celulas[numero][B]] = campo[B]
+    sheet[celulas[numero][C]] = campo[C]
+    sheet[celulas[numero][D]] = campo[D]
+    sheet[celulas[numero][E]] = campo[E]
+
+    const pagoFerias = [
+      {v: data, s: stylePadrao},
+      {v: "234", s: stylePadraoDebitoCredito},
+      {v: "5", s: stylePadraoDebitoCredito},
+      {v: `PAGO FERIAS ${dateText} `, s: stylePadrao},
+      {v: " ", s: stylePadraoCanto,f: `=-${celFeriasLiq}`},
+    ];
+    campo = pagoFerias
+    numero ++
+    sheet[celulas[numero][A]] = campo[A]
+    sheet[celulas[numero][B]] = campo[B]
+    sheet[celulas[numero][C]] = campo[C]
+    sheet[celulas[numero][D]] = campo[D]
+    sheet[celulas[numero][E]] = campo[E]
+
+    const pagoRescisao = [
+      {v: data, s: stylePadrao},
+      {v: "243", s: stylePadraoDebitoCredito},
+      {v: "5", s: stylePadraoDebitoCredito},
+      {v: `PAGO RESCISAO ${dateText} `, s: stylePadrao},
+      {v: " ", s: stylePadraoCanto, f: `=-${celRescisaoLiq}`},
+    ];
+    campo = pagoRescisao
+    numero ++
+    sheet[celulas[numero][A]] = campo[A]
+    sheet[celulas[numero][B]] = campo[B]
+    sheet[celulas[numero][C]] = campo[C]
+    sheet[celulas[numero][D]] = campo[D]
+    sheet[celulas[numero][E]] = campo[E]
+
+    
 
   
   return sheet

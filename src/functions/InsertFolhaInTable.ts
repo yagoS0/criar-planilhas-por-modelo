@@ -37,7 +37,7 @@ export default async function InsertFolhaInTable(
 
     ]
 
-      let numero = indice[0] + 7
+      let numero = indice[0] + 8
       const A = 0
       const B = 1
       const C = 2 

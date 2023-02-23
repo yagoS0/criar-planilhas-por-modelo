@@ -266,7 +266,13 @@ export default async function styleSheet(sheet:XLSX.WorkSheet,
     //Receita Presumido
     if(indiceReceitaPresumido.length === 2){
       await StyleReceitaPresumido(sheet,celulas,indiceReceitaPresumido)
-      await InsertFolhaInTable(sheet,celulas,indiceReceitaPresumido, coluns)
+      const indicePresumidoFinal = [indiceReceitaPresumido[1]+5]
+      for (let index = indicePresumidoFinal[0]; index < 70; index++) {
+        letras.map((colun)=>{
+          sheet[celulas[index][colun]] = {v: ' '}  
+        })
+      }
+      await InsertFolhaInTable(sheet,celulas,indicePresumidoFinal, coluns)
 
     }
 

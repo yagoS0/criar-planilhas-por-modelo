@@ -8,6 +8,24 @@ import MapRows from '../functions/MapRows'
 
 export default async function execute(dir) {
 
+  const year = 2023
+
+  const arrayMonthText  = [
+    `JAN-${year}`,
+    `FEV-${year}`,
+    `MAR-${year}`,
+    `ABR-${year}`,
+    `MAI-${year}`,
+    `JUN-${year}`,
+    `JUL-${year}`,
+    `AGO-${year}`,
+    `SET-${year}`,
+    `OUT-${year}`,
+    `NOV-${year}`,
+    `DEZ-${year}`,
+  ]
+
+
   console.log(dir)
   const files = fs.readdirSync(dir);
   
@@ -37,16 +55,25 @@ export default async function execute(dir) {
 
       await styleSheet(bookSheets, rowObject, sheetNumber)
       
-      XLSX.utils.book_append_sheet(newWorkBook, bookSheets)
-     
+      console.log(bookSheets)
+
+      XLSX.utils.book_append_sheet(newWorkBook, bookSheets,arrayMonthText[sheetNumber])
+
+      console.log(newWorkBook)
+      try {
+         JSON.parse(JSON.stringify(newWorkBook));
+      } catch (error) {
+        if (error instanceof SyntaxError) {
+          console.error('Invalid JSON:', error.message);
+        } else {
+          throw error;
+        }
+      }
+
 
     } 
-    await XLSX.writeFile(newWorkBook, pathFormated)   
+    await XLSX.writeFile(newWorkBook, pathFormated)
+
   })
 }
 
-
-// bookSheets["A1"].s = {
-//   font: { sz: 50, color: { rgb: '00f' } },
-//   border: { top: { style: 'bold' }, bottom: { style: 'bold' } }
-// }

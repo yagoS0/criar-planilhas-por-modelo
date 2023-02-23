@@ -208,7 +208,7 @@ export default async function styleSheet(sheet:XLSX.WorkSheet,
 
     // Apenas folha
     if(indiceFolha.length === 1){
-      for (let index = indiceFolha[0]-2; index < 100; index++) {
+      for (let index = indiceFolha[0]-2; index < 70; index++) {
         letras.map((colun)=>{
           sheet[celulas[index][colun]] = {v: ' '} 
         })
@@ -216,21 +216,21 @@ export default async function styleSheet(sheet:XLSX.WorkSheet,
       await InsertFolhaInTable(sheet,celulas,indiceFolha, coluns)
 
     }
-   
+    
     // Receita Serviço
     if(indiceReceitaServiço.length === 2){
       await StyleReceitaServico(sheet,celulas,indiceReceitaServiço)
         if(indiceCompra.length > 0){
           await StyleCompras(sheet,celulas,indiceCompra)
          
-          for (let index = indiceCompra[1]+2; index < 100; index++) {
+          for (let index = indiceCompra[1]+2; index < 70; index++) {
               letras.map((colun)=>{
                 sheet[celulas[index][colun]] = {v: ' '} 
               })
               await InsertFolhaInTable(sheet,celulas,indiceCompra, coluns)
             }
         }else{
-          for (let index = indiceReceitaServiço[1]+2; index < 100; index++) {
+          for (let index = indiceReceitaServiço[1]+2; index < 70; index++) {
             letras.map((colun)=>{
               sheet[celulas[index][colun]] = {v: ' '} 
             })
@@ -245,7 +245,7 @@ export default async function styleSheet(sheet:XLSX.WorkSheet,
       if(indiceCompra.length > 0){
         await StyleCompras(sheet,celulas,indiceCompra)
 
-        for (let index = indiceCompra[1]+1; index < 100; index++) {
+        for (let index = indiceCompra[1]+1; index < 70; index++) {
           letras.map((colun)=>{
             sheet[celulas[index][colun]] = {v: ' '} 
           })
@@ -254,7 +254,7 @@ export default async function styleSheet(sheet:XLSX.WorkSheet,
 
         
       }else{
-        for (let index = indiceReceitaVenda[1]+2; index < 100; index++) {
+        for (let index = indiceReceitaVenda[1]+2; index < 70; index++) {
           letras.map((colun)=>{
             sheet[celulas[index][colun]] = {v: ' '}  
           })

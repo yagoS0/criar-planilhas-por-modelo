@@ -1,6 +1,6 @@
 export default async function SpaceStyle(sheet) {
 
-   
+  sheet['!ref'] = 'A1:E70'
   sheet['!cols'] = [
     { wpx: 66 },
     { wpx: 53 },

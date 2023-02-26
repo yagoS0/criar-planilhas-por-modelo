@@ -55,7 +55,6 @@ export default async function execute(dir) {
 
       await styleSheet(bookSheets, rowObject, sheetNumber)
       
-      console.log(bookSheets)
 
       XLSX.utils.book_append_sheet(newWorkBook, bookSheets,arrayMonthText[sheetNumber])
 

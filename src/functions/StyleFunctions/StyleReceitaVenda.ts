@@ -2,7 +2,7 @@ import XLSX from 'xlsx-js-style'
 
 
 export default async function StyleReceitaVenda(
-  sheet:XLSX.WorkSheet,celulas:string[][],indiceReceitaVenda: number[]){
+  sheet:XLSX.WorkSheet,celulas:string[][],indiceReceitaVenda: number[], segundaReceita: boolean){
     const letras: number[] = [0,1,2,3,4]
 
     const rowInicio = indiceReceitaVenda[0]
@@ -159,6 +159,11 @@ export default async function StyleReceitaVenda(
         }
   
         if(colun === 4){
+          const primeiraCelulaInicioReceita = celulas[rowInicio][colun]
+          let separeteCelula = primeiraCelulaInicioReceita.split("")
+          
+          const segundaCelulaInicioReceita = `E${parseInt(separeteCelula[1]) + 2}`
+
           sheet[celulas[rowInicio-3][colun]].s = {
             font: {
               sz: 16,
@@ -177,6 +182,13 @@ export default async function StyleReceitaVenda(
            
             },
           }
+
+          sheet[celulas[rowFinal-1][colun]].v = `=${primeiraCelulaInicioReceita}`
+
+          if(segundaReceita === true){
+            sheet[celulas[rowFinal-1][colun]].v = `=${primeiraCelulaInicioReceita}+${segundaCelulaInicioReceita}`
+          }
+         
   
           sheet[celulas[rowFinal-1][colun]].s = {
             font: {

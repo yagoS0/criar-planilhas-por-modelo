@@ -246,6 +246,9 @@ export default async function StyleCompras(
             },
           },
         }
+
+        sheet[celulas[rowFinal+1][colun]].v = `=${celulas[rowInicio][colun]}+${celulas[rowFinal][colun]}`
+         
         sheet[celulas[rowFinal][colun]].s = {
           font: {
             sz: 12,

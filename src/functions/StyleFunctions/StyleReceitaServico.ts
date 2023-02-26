@@ -2,7 +2,8 @@ import XLSX from 'xlsx-js-style'
 
 
 export default async function StyleReceitaServico(
-  sheet:XLSX.WorkSheet,celulas:string[][],indiceReceitaServiço: number[]){
+  sheet:XLSX.WorkSheet,celulas:string[][],indiceReceitaServiço: number[]
+  ,retReceita:boolean,segundaReceitaServico: boolean){
 
   const letras: number[] = [0,1,2,3,4]
 
@@ -205,6 +206,11 @@ export default async function StyleReceitaServico(
           
           },
         }
+        const primeiraReceita = celulas[rowInicio][colun]
+
+
+        sheet[celulas[rowFinal-1][colun]].v = `=${primeiraReceita}`
+        
 
         sheet[celulas[rowInicio-2][colun]].s = {
         font: {

@@ -177,12 +177,21 @@ export default async function styleSheet(sheet:XLSX.WorkSheet,
         }
       }
     })
-    let segundaReceita: boolean = false
+    let segundaReceitaVenda: boolean = false
+    let retReceita: boolean = false
+    let segundaReceitaServico: boolean = false
+
     coluns.map(async (colun, index) => {
 
       // Receita Serviço
       if(colun.creditoValue === 372) {
         indiceReceitaServiço.push(index)
+      }
+      if(colun.debitoValue === 78) {
+        retReceita = true
+      }
+      if(colun.debitoValue === 5) {
+        segundaReceitaServico = true
       }
       if(colun.creditoValue === 265) {
         indiceReceitaServiço.push(index)
@@ -192,7 +201,7 @@ export default async function styleSheet(sheet:XLSX.WorkSheet,
         indiceReceitaVenda.push(index)
       }
       if(colun.creditoValue === 364) {
-        segundaReceita = true
+        segundaReceitaVenda = true
       }
       if(colun.creditoValue === 265) {
         indiceReceitaVenda.push(index)
@@ -223,7 +232,7 @@ export default async function styleSheet(sheet:XLSX.WorkSheet,
     
     // Receita Serviço
     if(indiceReceitaServiço.length === 2){
-      await StyleReceitaServico(sheet,celulas,indiceReceitaServiço)
+      await StyleReceitaServico(sheet,celulas,indiceReceitaServiço,retReceita,segundaReceitaServico)
         if(indiceCompra.length > 0){
           await StyleCompras(sheet,celulas,indiceCompra)
          
@@ -245,7 +254,7 @@ export default async function styleSheet(sheet:XLSX.WorkSheet,
 
     // Receita Venda
     if(indiceReceitaVenda.length === 2){
-      await StyleReceitaVenda(sheet,celulas,indiceReceitaVenda,segundaReceita)
+      await StyleReceitaVenda(sheet,celulas,indiceReceitaVenda,segundaReceitaVenda)
       if(indiceCompra.length > 0){
         await StyleCompras(sheet,celulas,indiceCompra)
 
